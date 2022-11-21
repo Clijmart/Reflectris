@@ -19,4 +19,9 @@ public class UIController : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+
+    public void OpenSettings()
+    {
+        SceneManager.LoadScene(3);
+    }
 }

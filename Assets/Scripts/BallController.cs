@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
-    [SerializeField] private float speed = 3;
+    [SerializeField] private float speed = 5;
     [SerializeField] private Rigidbody body;
 
     void Start()
