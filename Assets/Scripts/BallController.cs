@@ -7,6 +7,9 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private float speed = 0.01f;
 
+    [SerializeField]
+    private GameObject BoomParticle;
+
     private Vector3 movement;
     private Collider[] colliders;
 
@@ -42,6 +45,10 @@ public class BallController : MonoBehaviour
             if (!collider.gameObject.CompareTag("Border"))
             {
                 Destroy(collider.gameObject);
+            } else
+            {
+                var p = Instantiate(BoomParticle, collider.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+                Destroy(p, 1);
             }
         }
 

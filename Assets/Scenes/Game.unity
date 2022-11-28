@@ -564,6 +564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.025
+  BoomParticle: {fileID: 4696358819859930382, guid: 49b95d057aaa62e498ad7b40446c8167,
+    type: 3}
 --- !u!1 &829711611
 GameObject:
   m_ObjectHideFlags: 0
