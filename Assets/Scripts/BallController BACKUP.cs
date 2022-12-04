@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallController : MonoBehaviour
+public class BallControllerBackup : MonoBehaviour
 {
     [SerializeField]
-    private float initialSpeed = 1f;
+    private float speed = 1f;
 
     [SerializeField]
     private Vector3 initialMovement;
@@ -13,21 +13,19 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private GameObject BoomParticle;
 
-    private float speed;
     private Vector3 movement;
-    
+
     private void Start()
     {
-        speed = initialSpeed;
         movement = initialMovement;
     }
 
     private void Update()
     {
-        Vector3 normals = movement.normalized;
-        movement = normals * speed * Time.deltaTime;
-
+        movement = movement.normalized * speed * Time.deltaTime;
         transform.Translate(movement);
+
+        //RoundPosition();
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -54,13 +52,9 @@ public class BallController : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
-
-            Instantiate(BoomParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+            var p = Instantiate(BoomParticle, collider.transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            Destroy(p, 1);
         }
-
-
-        RoundPosition();
     }
 
     private void RoundPosition()
