@@ -13,6 +13,9 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private GameObject BoomParticle;
 
+    [SerializeField]
+    private GameObject ReflectParticle;
+
     private float speed;
     private Vector3 movement;
     
@@ -48,15 +51,17 @@ public class BallController : MonoBehaviour
             transform.position = collider.transform.position;
         }
 
-        if (!collider.gameObject.CompareTag("Border"))
-        {
-            Destroy(collider.gameObject);
-        }
-        else
+        if (collider.gameObject.CompareTag("Border"))
         {
             Destroy(gameObject);
 
             Instantiate(BoomParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+        }
+        else
+        {
+            Destroy(collider.gameObject);
+
+            Instantiate(ReflectParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
         }
 
 

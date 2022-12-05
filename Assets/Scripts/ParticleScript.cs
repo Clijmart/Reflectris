@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boom : MonoBehaviour
+public class ParticleScript : MonoBehaviour
 {
     [SerializeField]
     public float lifetime = 3f;
