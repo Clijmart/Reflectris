@@ -61,7 +61,7 @@ public class BallController : MonoBehaviour
         {
             Destroy(collider.gameObject);
 
-            Instantiate(ReflectParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+            Instantiate(ReflectParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
         }
 
 
