@@ -665,7 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpeed: 2
   initialMovement: {x: 1, y: 0, z: 0}
-  BoomParticle: {fileID: 4696358819859930382, guid: e8882ee73f4e428418f6ad38d37a7f7d,
+  BoomParticle: {fileID: 4696358819859930382, guid: 548eff83ac3172148b54eda7e46fec7d,
     type: 3}
   ReflectParticle: {fileID: 4374688615660232719, guid: 7a8394d9f64f7aa48b341f4c4ca4501a,
     type: 3}
