@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4374688615660232705}
   - component: {fileID: 4374688615660232704}
   - component: {fileID: -6046091436291008041}
+  - component: {fileID: 2350812991072074241}
   m_Layer: 0
   m_Name: Ball Reflect VFX
   m_TagString: Untagged
@@ -207,3 +208,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2350812991072074241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4374688615660232719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d21affe24447254f81dc275c1a8cec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 3

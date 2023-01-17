@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9097798816795607636}
   - component: {fileID: 4898281948147067999}
   - component: {fileID: 4164780594288898157}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,9 +177,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4131285442004864501}
   - component: {fileID: 7477375772980925553}
+  - component: {fileID: 4859743134830687099}
   m_Layer: 6
   m_Name: Diagonal Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,3 +215,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4859743134830687099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4131285442004864500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897f25e4ac959cc45a630e480459d826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reflectParticle: {fileID: 4374688615660232719, guid: 7a8394d9f64f7aa48b341f4c4ca4501a,
+    type: 3}

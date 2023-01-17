@@ -13,9 +13,6 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private GameObject BoomParticle;
 
-    [SerializeField]
-    private GameObject ReflectParticle;
-
     private float speed;
     private Vector3 movement;
     
@@ -57,11 +54,9 @@ public class BallController : MonoBehaviour
 
             Instantiate(BoomParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
         }
-        else
+        else if (collider.gameObject.CompareTag("Wall"))
         {
-            Destroy(collider.gameObject);
-
-            Instantiate(ReflectParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
+            collider.GetComponent<BlockWall>().Destroy();
         }
 
 

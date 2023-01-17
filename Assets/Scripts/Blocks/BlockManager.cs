@@ -45,14 +45,14 @@ public class BlockManager : MonoBehaviour
 
         if (ghostBlock != null)
         {
-            if (placePosition == ghostBlock.transform.position && ghostBlock.gameObject.GetComponent<Block>().Colliding() == willCollide) return;
+            if (placePosition == ghostBlock.transform.position && ghostBlock.gameObject.GetComponent<GhostBlock>().Colliding() == willCollide) return;
 
             Destroy(ghostBlock);
         }
 
         ghostBlock = Instantiate(ghostPrefab, placePosition, Quaternion.identity);
 
-        ghostBlock.gameObject.GetComponent<Block>().Colliding(willCollide);
+        ghostBlock.gameObject.GetComponent<GhostBlock>().Colliding(willCollide);
     }
 
     bool WillCollide(GameObject parentPrefab, Vector3 placePosition)
