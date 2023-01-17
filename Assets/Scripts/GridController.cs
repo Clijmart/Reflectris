@@ -6,13 +6,32 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject BlockManager;
+    private BlockManager BlockManager;
+
+    [SerializeField]
+    private TileManager TileManager;
+
+    [SerializeField]
+    public int gridHeight = 9;
+    [SerializeField]
+    public int gridWidth = 9;
+
+    void Start()
+    {
+        for (int row = 0; row < gridHeight; row++)
+        {
+            for (int col = 0; col < gridWidth; col++)
+            {
+                TileManager.Place(this, col, row);
+            }
+        }
+    }
 
     void Update()
     {
-        BlockManager.GetComponent<BlockManager>().Place(isGhost: true);
+        BlockManager.Place(isGhost: true);
 
-        if (Input.GetMouseButtonDown(0)) BlockManager.GetComponent<BlockManager>().Place(isGhost: false);
+        if (Input.GetMouseButtonDown(0)) BlockManager.Place(isGhost: false);
     }
 
     public Vector3 SnapToGrid(Vector3 rawPosition)

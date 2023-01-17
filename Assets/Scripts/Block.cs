@@ -20,10 +20,6 @@ public class Block : MonoBehaviour
 
     public void Colliding(bool colliding)
     {
-        if (colliding)
-        {
-            Debug.Log("Colliding");
-        }
         this.colliding = colliding;
     }
 

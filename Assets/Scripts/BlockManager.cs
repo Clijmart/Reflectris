@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject Grid;
+    private GridController GridController;
 
     [SerializeField]
     private GameObject blockFrefab;
@@ -23,9 +23,9 @@ public class BlockManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 200.0f))
         {
-            if (!hit.transform.gameObject.CompareTag("Grid")) return;
+            if (hit.transform.gameObject.layer != GridController.gameObject.layer) return;
 
-            Vector3 placePosition = Grid.GetComponent<GridController>().SnapToGrid(rawPosition: hit.point);
+            Vector3 placePosition = GridController.SnapToGrid(rawPosition: hit.point);
 
             if (isGhost) PlaceGhost(placePosition);
             else PlaceBlock(placePosition);
