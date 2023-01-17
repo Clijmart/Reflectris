@@ -14,6 +14,8 @@ public class BlockManager : MonoBehaviour
 
     [SerializeField]
     private LayerMask solidLayer;
+    [SerializeField]
+    private LayerMask floorLayer;
 
     private GameObject ghostBlock;
 
@@ -21,10 +23,8 @@ public class BlockManager : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 200.0f))
+        if (Physics.Raycast(ray, out hit, 200.0f, floorLayer))
         {
-            if (hit.transform.gameObject.layer != GridController.gameObject.layer) return;
-
             Vector3 placePosition = GridController.SnapToGrid(rawPosition: hit.point);
 
             if (isGhost) PlaceGhost(placePosition);

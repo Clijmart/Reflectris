@@ -5,10 +5,18 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> tilePrefabs;
+    private List<GameObject> floorPrefabs;
 
-    public GameObject Place(GridController grid, int col, int row)
+    [SerializeField]
+    private List<GameObject> borderPrefabs;
+
+    public GameObject Place(GridController grid, int col, int row, string tileType)
     {
+        List<GameObject> tilePrefabs = new();
+
+        if (tileType.Equals("Floor")) tilePrefabs = floorPrefabs;
+        else if (tileType.Equals("Border")) tilePrefabs = borderPrefabs;
+
         int startRowPosition = grid.gridHeight / -2;
         int startColPosition = grid.gridWidth / -2;
 
@@ -16,8 +24,8 @@ public class TileManager : MonoBehaviour
 
         Vector3 pos = new Vector3(startRowPosition + row, grid.gameObject.transform.position.y, startColPosition + col);
 
-        GameObject tile = Instantiate(tilePrefab, pos, tilePrefab.transform.rotation, transform);
-        tile.name = string.Format("Tile {0}-{1}", col, row);
+        GameObject tile = Instantiate(tilePrefab, pos, tilePrefab.transform.rotation, grid.gameObject.transform);
+        tile.name = string.Format("Tile {0}_{1}", col, row);
 
         return tile;
     }

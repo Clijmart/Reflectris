@@ -18,13 +18,7 @@ public class GridController : MonoBehaviour
 
     void Start()
     {
-        for (int row = 0; row < gridHeight; row++)
-        {
-            for (int col = 0; col < gridWidth; col++)
-            {
-                TileManager.Place(this, col, row);
-            }
-        }
+        GenerateGrid();
     }
 
     void Update()
@@ -32,6 +26,23 @@ public class GridController : MonoBehaviour
         BlockManager.Place(isGhost: true);
 
         if (Input.GetMouseButtonDown(0)) BlockManager.Place(isGhost: false);
+    }
+
+    private void GenerateGrid()
+    {
+        for (int row = -1; row < gridHeight + 1; row++)
+        {
+            for (int col = -1; col < gridWidth + 1; col++)
+            {
+                if (row >= 0 && row < gridHeight && col >= 0 && col < gridWidth)
+                {
+                    TileManager.Place(this, col, row, "Floor");
+                } else
+                {
+                    TileManager.Place(this, col, row, "Border");
+                }
+            }
+        }
     }
 
     public Vector3 SnapToGrid(Vector3 rawPosition)
