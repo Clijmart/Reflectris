@@ -10,17 +10,24 @@ public class TileManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> borderPrefabs;
 
+    public static TileManager instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
+
     public GameObject Place(GridController grid, int col, int row, string tileType)
     {
-        GameObject tilePrefab = new();
+        GameObject tilePrefab;
 
-        if (tileType.Equals("Border"))
-        {
-            tilePrefab = borderPrefabs[row == -1 || row == grid.gridHeight ? 0 : 1];
-        }
-        else if (tileType.Equals("Floor"))
+        if (tileType.Equals("Floor"))
         {
             tilePrefab = floorPrefabs[(row % floorPrefabs.Count + col % floorPrefabs.Count) % floorPrefabs.Count];
+        }
+        else
+        {
+            tilePrefab = borderPrefabs[row == -1 || row == grid.gridHeight ? 0 : 1];
         }
 
         int startRowPosition = grid.gridHeight / -2;

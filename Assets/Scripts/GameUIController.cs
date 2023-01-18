@@ -6,13 +6,13 @@ using TMPro;
 public class GameUIController : MonoBehaviour
 {
     [SerializeField]
-    private GameDataManager GameDataManager;
-
-    [SerializeField]
     private TextMeshProUGUI livesText;
+    [SerializeField]
+    private TextMeshProUGUI scoreText;
 
     void Update()
     {
-        livesText.text = string.Format("{0} Lives", GameDataManager.Lives());
+        livesText.text = string.Format("{0} Lives", GameDataManager.instance.Lives());
+        scoreText.text = string.Format("{0} Score", GameDataManager.instance.Score());
     }
 }

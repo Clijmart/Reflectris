@@ -5,9 +5,6 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     [SerializeField]
-    private GameDataManager GameDataManager;
-
-    [SerializeField]
     private float initialSpeed = 1f;
 
     [SerializeField]
@@ -53,9 +50,9 @@ public class BallController : MonoBehaviour
 
         if (collider.gameObject.CompareTag("Border"))
         {
-            GameDataManager.ChangeLives(-1);
+            GameDataManager.instance.ChangeLives(-1);
 
-            if (GameDataManager.Lives() > 0)
+            if (GameDataManager.instance.Lives() > 0)
             {
                 Instantiate(DamageAnimation, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
             } else
@@ -68,8 +65,10 @@ public class BallController : MonoBehaviour
         else if (collider.gameObject.CompareTag("Wall"))
         {
             collider.GetComponent<BlockWall>().Destroy();
-        }
 
+            GameDataManager.instance.ChangeScore(1);
+            BlockManager.instance.ghostBlockDirty = true;
+        }
 
         RoundPosition();
     }

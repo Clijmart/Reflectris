@@ -6,15 +6,16 @@ using UnityEngine;
 public class GridController : MonoBehaviour
 {
     [SerializeField]
-    private BlockManager BlockManager;
-
-    [SerializeField]
-    private TileManager TileManager;
-
-    [SerializeField]
     public int gridHeight = 9;
     [SerializeField]
     public int gridWidth = 9;
+
+    internal static GridController instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -23,9 +24,9 @@ public class GridController : MonoBehaviour
 
     void Update()
     {
-        BlockManager.Place(isGhost: true);
+        BlockManager.instance.Place(isGhost: true);
 
-        if (Input.GetMouseButtonDown(0)) BlockManager.Place(isGhost: false);
+        if (Input.GetMouseButtonDown(0)) BlockManager.instance.Place(isGhost: false);
     }
 
     private void GenerateGrid()
@@ -36,10 +37,10 @@ public class GridController : MonoBehaviour
             {
                 if (row >= 0 && row < gridHeight && col >= 0 && col < gridWidth)
                 {
-                    TileManager.Place(this, col, row, "Floor");
+                    TileManager.instance.Place(this, col, row, "Floor");
                 } else
                 {
-                    TileManager.Place(this, col, row, "Border");
+                    TileManager.instance.Place(this, col, row, "Border");
                 }
             }
         }
