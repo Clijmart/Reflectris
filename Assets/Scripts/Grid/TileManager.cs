@@ -12,17 +12,21 @@ public class TileManager : MonoBehaviour
 
     public GameObject Place(GridController grid, int col, int row, string tileType)
     {
-        List<GameObject> tilePrefabs = new();
+        GameObject tilePrefab = new();
 
-        if (tileType.Equals("Floor")) tilePrefabs = floorPrefabs;
-        else if (tileType.Equals("Border")) tilePrefabs = borderPrefabs;
+        if (tileType.Equals("Border"))
+        {
+            tilePrefab = borderPrefabs[row == -1 || row == grid.gridHeight ? 0 : 1];
+        }
+        else if (tileType.Equals("Floor"))
+        {
+            tilePrefab = floorPrefabs[(row % floorPrefabs.Count + col % floorPrefabs.Count) % floorPrefabs.Count];
+        }
 
         int startRowPosition = grid.gridHeight / -2;
         int startColPosition = grid.gridWidth / -2;
 
-        GameObject tilePrefab = tilePrefabs[(row % tilePrefabs.Count + col % tilePrefabs.Count) % tilePrefabs.Count];
-
-        Vector3 pos = new Vector3(startRowPosition + row, grid.gameObject.transform.position.y, startColPosition + col);
+        Vector3 pos = new(startColPosition + col, grid.gameObject.transform.position.y, startRowPosition + row);
 
         GameObject tile = Instantiate(tilePrefab, pos, tilePrefab.transform.rotation, grid.gameObject.transform);
         tile.name = string.Format("Tile {0}_{1}", col, row);

@@ -8,9 +8,7 @@ public class BlockManager : MonoBehaviour
     private GridController GridController;
 
     [SerializeField]
-    private GameObject blockFrefab;
-    [SerializeField]
-    private GameObject ghostPrefab;
+    private GameDataManager GameDataManager;
 
     [SerializeField]
     private LayerMask solidLayer;
@@ -34,14 +32,17 @@ public class BlockManager : MonoBehaviour
 
     public void PlaceBlock(Vector3 placePosition)
     {
-        if (WillCollide(blockFrefab, placePosition)) return;
+        GameObject prefab = IBlockType.blockTypes[GameDataManager.selectedBlockType].BlockPrefab();
 
-        Instantiate(blockFrefab, placePosition, Quaternion.identity);
+        if (WillCollide(prefab, placePosition)) return;
+
+        Instantiate(prefab, placePosition, Quaternion.identity);
     }
 
     public void PlaceGhost(Vector3 placePosition)
     {
-        bool willCollide = WillCollide(ghostPrefab, placePosition);
+        GameObject prefab = IBlockType.blockTypes[GameDataManager.selectedBlockType].GhostBlockPrefab();
+        bool willCollide = WillCollide(prefab, placePosition);
 
         if (ghostBlock != null)
         {
@@ -50,7 +51,7 @@ public class BlockManager : MonoBehaviour
             Destroy(ghostBlock);
         }
 
-        ghostBlock = Instantiate(ghostPrefab, placePosition, Quaternion.identity);
+        ghostBlock = Instantiate(prefab, placePosition, Quaternion.identity);
 
         ghostBlock.gameObject.GetComponent<GhostBlock>().Colliding(willCollide);
     }

@@ -6,11 +6,11 @@ public class GhostBlockWall : MonoBehaviour
 {
     void Start()
     {
-        GetComponent<MeshRenderer>().material = GetComponentInParent<GhostBlock>().GetMaterial();
+        GetComponentInChildren<MeshRenderer>().material = GetComponentInParent<GhostBlock>().GetMaterial();
     }
 
     void Update()
     {
-        GetComponent<MeshRenderer>().material = GetComponentInParent<GhostBlock>().GetMaterial();
+        GetComponentInChildren<MeshRenderer>().material = GetComponentInParent<GhostBlock>().GetMaterial();
     }
 }

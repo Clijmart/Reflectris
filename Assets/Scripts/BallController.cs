@@ -5,13 +5,18 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     [SerializeField]
+    private GameDataManager GameDataManager;
+
+    [SerializeField]
     private float initialSpeed = 1f;
 
     [SerializeField]
     private Vector3 initialMovement;
 
     [SerializeField]
-    private GameObject BoomParticle;
+    private GameObject DamageAnimation;
+    [SerializeField]
+    private GameObject DeathAnimation;
 
     private float speed;
     private Vector3 movement;
@@ -32,8 +37,6 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("Inside " + collider.name);
-
         Vector3 normal = collider.transform.forward;
         Debug.Log("normal: " + normal);
         Vector3 reflected = Vector3.Reflect(movement, normal);
@@ -50,9 +53,17 @@ public class BallController : MonoBehaviour
 
         if (collider.gameObject.CompareTag("Border"))
         {
-            Destroy(gameObject);
+            GameDataManager.ChangeLives(-1);
 
-            Instantiate(BoomParticle, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+            if (GameDataManager.Lives() > 0)
+            {
+                Instantiate(DamageAnimation, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+            } else
+            {
+                Destroy(gameObject);
+
+                Instantiate(DeathAnimation, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+            }
         }
         else if (collider.gameObject.CompareTag("Wall"))
         {

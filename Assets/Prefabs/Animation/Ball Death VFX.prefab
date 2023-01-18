@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 347843116593355005}
   - component: {fileID: -251925549898718113}
   m_Layer: 0
-  m_Name: Ball Shards VFX
+  m_Name: Ball Death VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

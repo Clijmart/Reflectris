@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5541662267377847006}
   - component: {fileID: 5541662267377847001}
   m_Layer: 6
-  m_Name: Border
+  m_Name: BorderHorizontal
   m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 73d63844e3100b94290d312531275ec0, type: 2}
+  - {fileID: 2100000, guid: dbdde0b2e942b924e87f69b0ce862e66, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
