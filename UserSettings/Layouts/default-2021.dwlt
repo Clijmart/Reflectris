@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Game
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 32
+  controlID: 59
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -294,22 +294,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Animation
+    - Assets/Textures
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Animation
+  - Assets/Textures
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Unity Projects\Reflectris
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: b4760000
-    m_LastClickedID: 30388
-    m_ExpandedIDs: 000000008e76000090760000927600009476000096760000987600009a7600009c7600009e760000a0760000a276000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 119}
+    m_SelectedIDs: d2760000
+    m_LastClickedID: 30418
+    m_ExpandedIDs: 000000009a7600009e760000a0760000a2760000a4760000a6760000a8760000aa760000ac760000ae76000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -337,7 +337,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008e76000090760000927600009476000096760000987600009a7600009c7600009e760000a0760000a2760000
+    m_ExpandedIDs: 000000009a7600009c7600009e760000a0760000a2760000a4760000a6760000a8760000aa760000ac760000ae760000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -467,9 +467,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 2ebefeff18faffffdc710000ea71000046720000
+      m_SelectedIDs: 0675feff
+      m_LastClickedID: -101114
+      m_ExpandedIDs: 16faffffde7100000c7200001072000054720000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -752,9 +752,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -9.998678, y: -40.64638, z: 41.76173}
+    m_Target: {x: 0.12331795, y: 3.1675174, z: -1.9753959}
     speed: 2
-    m_Value: {x: -9.998678, y: -40.64638, z: 41.76173}
+    m_Value: {x: 0.12331795, y: 3.1675174, z: -1.9753959}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -801,13 +801,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.36978275, y: -0.10420438, z: 0.041779354, w: 0.92230684}
+    m_Target: {x: 0.481881, y: -0.0052619516, z: 0.0028935217, w: 0.8762166}
     speed: 2
-    m_Value: {x: 0.3697209, y: -0.10558808, z: 0.04233413, w: 0.92215264}
+    m_Value: {x: 0.4818808, y: -0.0052619497, z: 0.0028935208, w: 0.8762163}
   m_Size:
-    m_Target: 32.75364
+    m_Target: 0.8660254
     speed: 2
-    m_Value: 31.343195
+    m_Value: 0.8660254
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -825,7 +825,7 @@ MonoBehaviour:
     m_FarClip: 10000
     m_DynamicClip: 1
     m_OcclusionCulling: 0
-  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+  m_LastSceneViewRotation: {x: 0.14751445, y: 0.493872, z: -0.085442826, w: 0.85266066}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 

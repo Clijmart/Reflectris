@@ -5,6 +5,11 @@ using UnityEngine;
 public class BlockManager : MonoBehaviour
 {
     [SerializeField]
+    private AudioClip[] blockErrorSounds;
+    [SerializeField]
+    private AudioClip[] blockPlaceSounds;
+
+    [SerializeField]
     private LayerMask solidLayer;
     [SerializeField]
     private LayerMask floorLayer;
@@ -35,13 +40,21 @@ public class BlockManager : MonoBehaviour
 
     public void PlaceBlock(Vector3 placePosition)
     {
-        GameObject prefab = IBlockType.blockTypes[GameDataManager.instance.selectedBlockType].BlockPrefab();
+        BlockType selectedBlockType = GameDataManager.instance.selectedBlockType;
+        if (!ObjectiveManager.instance.FitsObjective(selectedBlockType))
+        {
+            AudioManager.instance.PlayRandomSound(blockErrorSounds);
+            return;
+        }
 
+        GameObject prefab = IBlockType.blockTypes[selectedBlockType].BlockPrefab();
         if (WillCollide(prefab, placePosition)) return;
 
+        AudioManager.instance.PlayRandomSound(blockPlaceSounds);
         Instantiate(prefab, placePosition, Quaternion.identity);
-
         ghostBlockDirty = true;
+
+        ObjectiveManager.instance.NewObjective();
     }
 
     public void PlaceGhost(Vector3 placePosition)
