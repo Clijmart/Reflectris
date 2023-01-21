@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    [Header("Ball Movement")]
     [SerializeField]
     private float initialSpeed = 1f;
-
     [SerializeField]
     private Vector3 initialMovement;
 
+    [Header("Effects")]
     [SerializeField]
-    private GameObject DamageAnimation;
+    private GameObject DamageEffect;
     [SerializeField]
-    private GameObject DeathAnimation;
+    private GameObject DeathEffect;
 
     private float speed;
     private Vector3 movement;
@@ -27,7 +28,7 @@ public class BallController : MonoBehaviour
     private void Update()
     {
         Vector3 normals = movement.normalized;
-        movement = normals * speed * Time.deltaTime;
+        movement = speed * Time.deltaTime * normals;
 
         transform.Translate(movement);
     }
@@ -35,16 +36,16 @@ public class BallController : MonoBehaviour
     private void OnTriggerEnter(Collider collider)
     {
         Vector3 normal = collider.transform.forward;
-        Debug.Log("normal: " + normal);
+        //Debug.Log("normal: " + normal);
         Vector3 reflected = Vector3.Reflect(movement, normal);
-        Debug.Log("reflected: " + reflected);
+        //Debug.Log("reflected: " + reflected);
         movement.x = reflected.x;
         movement.z = reflected.z;
 
         bool straightWall = Mathf.RoundToInt(collider.transform.rotation.eulerAngles.y) % 90 == 0;
         if (!straightWall)
         {
-            Debug.Log("Not straight wall! " + collider.transform.rotation.eulerAngles.y);
+            //Debug.Log("Not straight wall! " + collider.transform.rotation.eulerAngles.y);
             transform.position = collider.transform.position;
         }
 
@@ -54,12 +55,16 @@ public class BallController : MonoBehaviour
 
             if (GameDataManager.instance.Lives() > 0)
             {
-                Instantiate(DamageAnimation, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+                ScreenShakeController.instance.StartShake(length: .5f, power: .2f);
+
+                Instantiate(DamageEffect, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
             } else
             {
                 Destroy(gameObject);
 
-                Instantiate(DeathAnimation, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
+                ScreenShakeController.instance.StartShake(length: 1f, power: .2f);
+
+                Instantiate(DeathEffect, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(-90, 0, 0));
             }
         }
         else if (collider.gameObject.CompareTag("Wall"))
@@ -67,7 +72,7 @@ public class BallController : MonoBehaviour
             collider.GetComponent<BlockWall>().Destroy();
 
             GameDataManager.instance.ChangeScore(1);
-            BlockManager.instance.ghostBlockDirty = true;
+            BlockManager.instance.MakeGhostBlockDirty();
         }
 
         RoundPosition();

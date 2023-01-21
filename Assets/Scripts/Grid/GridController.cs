@@ -5,24 +5,22 @@ using UnityEngine;
 
 public class GridController : MonoBehaviour
 {
-    [SerializeField]
-    public int gridHeight = 9;
-    [SerializeField]
-    public int gridWidth = 9;
+    public static GridController instance;
 
-    internal static GridController instance;
+    [SerializeField]
+    private Vector2Int gridSize = new(9, 9);
 
-    public void Awake()
+    private void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    private void Start()
     {
         GenerateGrid();
     }
 
-    void Update()
+    private void Update()
     {
         BlockManager.instance.Place(isGhost: true);
 
@@ -31,16 +29,16 @@ public class GridController : MonoBehaviour
 
     private void GenerateGrid()
     {
-        for (int row = -1; row < gridHeight + 1; row++)
+        for (int row = -1; row < gridSize.y + 1; row++)
         {
-            for (int col = -1; col < gridWidth + 1; col++)
+            for (int col = -1; col < gridSize.x + 1; col++)
             {
-                if (row >= 0 && row < gridHeight && col >= 0 && col < gridWidth)
+                if (row >= 0 && row < gridSize.y && col >= 0 && col < gridSize.x)
                 {
-                    TileManager.instance.Place(this, col, row, "Floor");
+                    TileManager.instance.PlaceTile(col, row, "Floor");
                 } else
                 {
-                    TileManager.instance.Place(this, col, row, "Border");
+                    TileManager.instance.PlaceTile(col, row, "Border");
                 }
             }
         }
@@ -53,5 +51,15 @@ public class GridController : MonoBehaviour
         snapped.z = Mathf.Round(rawPosition.z - 0.5f) + snapped.z;
 
         return snapped;
+    }
+
+    public Vector3 GetGridPosition()
+    {
+        return transform.position;
+    }
+
+    public Vector2Int GetGridSize()
+    {
+        return gridSize;
     }
 }

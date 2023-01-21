@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
 {
+    public static GameDataManager instance;
+
+    [Header("Data Defaults")]
     [SerializeField]
     private int lives = 3;
+    [SerializeField]
+    private int score = 0;
 
-    private int score;
+    private BlockType selectedBlockType = BlockType.MULTIPLY;
 
-    internal static GameDataManager instance;
-
-    public BlockType selectedBlockType { get; set; } = BlockType.MULTIPLY;
-
-    public void Awake()
+    private void Awake()
     {
         instance = this;
     }
 
-    private void Update()
+    public BlockType GetSelectedBlockType()
     {
-        if (Input.GetKeyDown(KeyCode.M)) selectBlockType(BlockType.MULTIPLY);
-        if (Input.GetKeyDown(KeyCode.P)) selectBlockType(BlockType.PLUS);
+        return selectedBlockType;
     }
 
-    public BlockType selectBlockType(BlockType blockType)
+    public BlockType SetSelectedBlockType(BlockType blockType)
     {
         selectedBlockType = blockType;
-        BlockManager.instance.ghostBlockDirty = true;
+        BlockManager.instance.MakeGhostBlockDirty();
 
         return selectedBlockType;
     }

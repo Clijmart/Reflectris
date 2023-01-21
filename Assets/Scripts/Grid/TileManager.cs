@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
+    public static TileManager instance;
+
+    [Header("Tile Prefabs")]
     [SerializeField]
     private List<GameObject> floorPrefabs;
-
     [SerializeField]
     private List<GameObject> borderPrefabs;
 
-    public static TileManager instance;
-
-    public void Awake()
+    private void Awake()
     {
         instance = this;
     }
 
-    public GameObject Place(GridController grid, int col, int row, string tileType)
+    public GameObject PlaceTile(int col, int row, string tileType)
     {
         GameObject tilePrefab;
 
@@ -27,15 +27,15 @@ public class TileManager : MonoBehaviour
         }
         else
         {
-            tilePrefab = borderPrefabs[row == -1 || row == grid.gridHeight ? 0 : 1];
+            tilePrefab = borderPrefabs[row == -1 || row == GridController.instance.GetGridSize().y ? 0 : 1];
         }
 
-        int startRowPosition = grid.gridHeight / -2;
-        int startColPosition = grid.gridWidth / -2;
+        int startRowPosition = GridController.instance.GetGridSize().y / -2;
+        int startColPosition = GridController.instance.GetGridSize().x / -2;
+        
+        Vector3 pos = new(startColPosition + col, GridController.instance.GetGridPosition().y, startRowPosition + row);
 
-        Vector3 pos = new(startColPosition + col, grid.gameObject.transform.position.y, startRowPosition + row);
-
-        GameObject tile = Instantiate(tilePrefab, pos, tilePrefab.transform.rotation, grid.gameObject.transform);
+        GameObject tile = Instantiate(tilePrefab, pos, tilePrefab.transform.rotation, GridController.instance.gameObject.transform);
         tile.name = string.Format("Tile {0}_{1}", col, row);
 
         return tile;

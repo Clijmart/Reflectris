@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    AudioSource audioSource;
+    public static AudioManager instance;
 
-    internal static AudioManager instance;
+    private AudioSource audioSource;
 
-    public void Awake()
+    private void Awake()
     {
         instance = this;
     }
@@ -18,15 +18,16 @@ public class AudioManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySound(AudioClip audioClip)
+    public void PlaySound(AudioClip audioClip, float volume)
     {
         audioSource.clip = audioClip;
+        audioSource.volume = volume;
         audioSource.Play();
     }
 
-    public void PlayRandomSound(AudioClip[] audioClips)
+    public void PlayRandomSound(AudioClip[] audioClips, float volume)
     {
         int rand = Random.Range(0, audioClips.Length);
-        PlaySound(audioClips[rand]);
+        PlaySound(audioClips[rand], volume);
     }
 }
