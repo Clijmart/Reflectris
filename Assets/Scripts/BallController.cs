@@ -28,6 +28,7 @@ public class BallController : MonoBehaviour
     private void Update()
     {
         Vector3 normals = movement.normalized;
+        speed = BallSpeedFromTime(GameDataManager.instance.GameLength());
         movement = speed * Time.deltaTime * normals;
 
         transform.Translate(movement);
@@ -88,5 +89,15 @@ public class BallController : MonoBehaviour
         rawPosition.z = Mathf.Round(rawPosition.z * 1000f) / 1000f;
 
         transform.position = rawPosition;
+    }
+
+    private float BallSpeedFromTime(float gameLength)
+    {
+        return Mathf.Round(Mathf.Max(gameLength, 1) / 60 * 10f) / 10f + initialSpeed;
+    }
+
+    public float GetSpeed()
+    {
+        return speed;
     }
 }
