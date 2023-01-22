@@ -13,6 +13,8 @@ public class GameDataManager : MonoBehaviour
     private int score = 0;
 
     private BlockType selectedBlockType = BlockType.MULTIPLICATION;
+    private int selectedBlockRotation = 0;
+    private int FULL_ROTATION = 360;
 
     private void Awake()
     {
@@ -24,12 +26,37 @@ public class GameDataManager : MonoBehaviour
         return selectedBlockType;
     }
 
-    public BlockType SetSelectedBlockType(BlockType blockType)
+    public void SetSelectedBlockType(BlockType blockType)
     {
         selectedBlockType = blockType;
         BlockManager.instance.MakeGhostBlockDirty();
+    }
 
-        return selectedBlockType;
+    public BlockType ChangeSelectedBlockType(int cycleAmount)
+    {
+        BlockType nextBlockType = IBlockType.RelaviteBlockType(GetSelectedBlockType(), cycleAmount);
+        SetSelectedBlockType(nextBlockType);
+        ResetSelectedBlockRotation();
+
+        return nextBlockType;
+    }
+
+    public int GetSelectedBlockRotation()
+    {
+        return selectedBlockRotation;
+    }
+
+    public void ResetSelectedBlockRotation()
+    {
+        selectedBlockRotation = 0;
+        BlockManager.instance.MakeGhostBlockDirty();
+    }
+    
+    public int ChangeSelectedBlockRotation(int rotationChange)
+    {
+        selectedBlockRotation = (selectedBlockRotation + rotationChange + FULL_ROTATION) % FULL_ROTATION;
+        BlockManager.instance.MakeGhostBlockDirty();
+        return selectedBlockRotation;
     }
 
     public int Lives()

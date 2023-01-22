@@ -34,9 +34,8 @@ public class BlockManager : MonoBehaviour
 
     public void Place(bool isGhost)
     {
-        RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 200.0f, floorLayer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 200.0f, floorLayer))
         {
             Vector3 placePosition = GridController.instance.SnapToGrid(rawPosition: hit.point);
 
@@ -58,7 +57,9 @@ public class BlockManager : MonoBehaviour
         if (WillCollide(prefab, placePosition)) return;
 
         AudioManager.instance.PlayRandomSound(blockPlaceSounds, blockPlaceSoundVolume);
-        Instantiate(prefab, placePosition, Quaternion.identity);
+
+        int selectedBlockRotation = GameDataManager.instance.GetSelectedBlockRotation();
+        Instantiate(prefab, placePosition, Quaternion.Euler(new Vector3(0f, selectedBlockRotation, 0f)));
 
         MakeGhostBlockDirty();
 
@@ -73,7 +74,8 @@ public class BlockManager : MonoBehaviour
         GameObject prefab = IBlockType.blockTypeObjects[GameDataManager.instance.GetSelectedBlockType()].GhostBlockPrefab();
         bool willCollide = WillCollide(prefab, placePosition);
 
-        ghostBlock = Instantiate(prefab, placePosition, Quaternion.identity);
+        int selectedBlockRotation = GameDataManager.instance.GetSelectedBlockRotation();
+        ghostBlock = Instantiate(prefab, placePosition, Quaternion.Euler(new Vector3(0f, selectedBlockRotation, 0f)));
 
         ghostBlock.gameObject.GetComponent<GhostBlock>().Colliding(willCollide);
 

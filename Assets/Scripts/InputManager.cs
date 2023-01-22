@@ -6,20 +6,45 @@ public class InputManager : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) GameDataManager.instance.SetSelectedBlockType(BlockType.ADDITION);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) GameDataManager.instance.SetSelectedBlockType(BlockType.SUBTRACTION);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) GameDataManager.instance.SetSelectedBlockType(BlockType.MULTIPLICATION);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) GameDataManager.instance.SetSelectedBlockType(BlockType.DIVISION);
-
-        if (Input.GetMouseButtonDown(0)) BlockManager.instance.Place(isGhost: false);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            GameDataManager.instance.SetSelectedBlockType(BlockType.ADDITION);
+            GameDataManager.instance.ResetSelectedBlockRotation();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            GameDataManager.instance.SetSelectedBlockType(BlockType.SUBTRACTION);
+            GameDataManager.instance.ResetSelectedBlockRotation();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            GameDataManager.instance.SetSelectedBlockType(BlockType.MULTIPLICATION);
+            GameDataManager.instance.ResetSelectedBlockRotation();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            GameDataManager.instance.SetSelectedBlockType(BlockType.DIVISION);
+            GameDataManager.instance.ResetSelectedBlockRotation();
+        }
 
         if (Input.mouseScrollDelta.y != 0)
         {
             int mouseScroll = Mathf.RoundToInt(Input.mouseScrollDelta.normalized.y);
-            BlockType nextBlockType = IBlockType.RelaviteBlockType(GameDataManager.instance.GetSelectedBlockType(), mouseScroll);
-            GameDataManager.instance.SetSelectedBlockType(nextBlockType);
+            GameDataManager.instance.ChangeSelectedBlockType(cycleAmount: mouseScroll);
+        }
 
-            Debug.Log("Current mouse scroll:" + Input.mouseScrollDelta);
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: -90);
+        }
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: 90);
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            BlockManager.instance.Place(isGhost: false);
         }
     }
 }
