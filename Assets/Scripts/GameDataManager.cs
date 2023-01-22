@@ -12,7 +12,7 @@ public class GameDataManager : MonoBehaviour
     [SerializeField]
     private int score = 0;
 
-    private BlockType selectedBlockType = BlockType.MULTIPLY;
+    private BlockType selectedBlockType = BlockType.MULTIPLICATION;
 
     private void Awake()
     {

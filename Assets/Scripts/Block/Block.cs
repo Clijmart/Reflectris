@@ -7,6 +7,11 @@ public class Block : MonoBehaviour
     [SerializeField]
     private List<BlockWall> blockWalls;
 
+    private void Start()
+    {
+        BlockManager.instance.placedBlocks.Add(this);
+    }
+
     private void Update()
     {
         if (blockWalls.Count <= 0)

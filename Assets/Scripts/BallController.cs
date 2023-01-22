@@ -57,6 +57,8 @@ public class BallController : MonoBehaviour
             {
                 ScreenShakeController.instance.StartShake(length: .5f, power: .2f);
 
+                BlockManager.instance.DestroyAllBlocks();
+
                 Instantiate(DamageEffect, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
             } else
             {
@@ -69,7 +71,7 @@ public class BallController : MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Wall"))
         {
-            collider.GetComponent<BlockWall>().Destroy();
+            collider.GetComponent<BlockWall>().Reflect();
 
             GameDataManager.instance.ChangeScore(1);
             BlockManager.instance.MakeGhostBlockDirty();

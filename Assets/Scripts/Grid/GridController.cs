@@ -23,8 +23,6 @@ public class GridController : MonoBehaviour
     private void Update()
     {
         BlockManager.instance.Place(isGhost: true);
-
-        if (Input.GetMouseButtonDown(0)) BlockManager.instance.Place(isGhost: false);
     }
 
     private void GenerateGrid()

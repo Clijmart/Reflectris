@@ -6,6 +6,8 @@ public class BlockManager : MonoBehaviour
 {
     public static BlockManager instance;
 
+    public List<Block> placedBlocks = new();
+
     [Header("Block Audio")]
     [SerializeField]
     private float blockErrorSoundVolume = 1f;
@@ -52,7 +54,7 @@ public class BlockManager : MonoBehaviour
             return;
         }
 
-        GameObject prefab = IBlockType.blockTypes[selectedBlockType].BlockPrefab();
+        GameObject prefab = IBlockType.blockTypeObjects[selectedBlockType].BlockPrefab();
         if (WillCollide(prefab, placePosition)) return;
 
         AudioManager.instance.PlayRandomSound(blockPlaceSounds, blockPlaceSoundVolume);
@@ -68,7 +70,7 @@ public class BlockManager : MonoBehaviour
         if (!ghostBlockDirty && (ghostBlock == null || placePosition == ghostBlock.transform.position)) return;
         Destroy(ghostBlock);
 
-        GameObject prefab = IBlockType.blockTypes[GameDataManager.instance.GetSelectedBlockType()].GhostBlockPrefab();
+        GameObject prefab = IBlockType.blockTypeObjects[GameDataManager.instance.GetSelectedBlockType()].GhostBlockPrefab();
         bool willCollide = WillCollide(prefab, placePosition);
 
         ghostBlock = Instantiate(prefab, placePosition, Quaternion.identity);
@@ -90,5 +92,18 @@ public class BlockManager : MonoBehaviour
     public void MakeGhostBlockDirty()
     {
         ghostBlockDirty = true;
+    }
+
+    public void DestroyAllBlocks()
+    {
+        for (int i = placedBlocks.Count - 1; i >= 0; i--)
+        {
+            if (placedBlocks[i] != null)
+            {
+                Destroy(placedBlocks[i].gameObject);
+            }
+        }
+
+        placedBlocks.Clear();
     }
 }

@@ -17,22 +17,21 @@ public class ObjectiveManager : MonoBehaviour
 
     private void Start()
     {
-        // TODO: Add to JSON file
-        availableObjectives.Add(new Objective(BlockType.MULTIPLY, "6 ... 5 = 30"));
-        availableObjectives.Add(new Objective(BlockType.PLUS, "6 ... 5 = 11"));
-
         NewObjective();
     }
 
     public Objective NewObjective()
     {
-        currentObjective = availableObjectives[Random.Range(0, availableObjectives.Count)];
+        IBlockType blockType = IBlockType.RandomBlockType();
+
+        currentObjective = new Objective(blockType, 2);
+
         return currentObjective;
     }
 
     public bool FitsObjective(BlockType blockType)
     {
-        return blockType == currentObjective.GetOperatorBlock();
+        return IBlockType.GetFromType(blockType).ApplyOperator(currentObjective.terms) == currentObjective.solution;
     }
 
     public Objective CurrentObjective()
