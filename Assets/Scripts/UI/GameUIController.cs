@@ -25,7 +25,6 @@ public class GameUIController : MonoBehaviour
         livesText.text = string.Format("{0} Lives", GameDataManager.instance.Lives());
         scoreText.text = string.Format("{0} Score", GameDataManager.instance.Score());
         gameLengthText.text = FormattedTime(Mathf.RoundToInt(GameDataManager.instance.GameLength()));
-        ballSpeedText.text = string.Format("{0} Speed", Mathf.Round(Mathf.Max(GameDataManager.instance.GameLength(), 1) / 60 * 10f) / 10f + 1); // Temp
 
         // Objective
         equationText.text = ObjectiveManager.instance.CurrentObjective().GetEquation();

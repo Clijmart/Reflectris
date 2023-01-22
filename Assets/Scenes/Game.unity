@@ -996,6 +996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialSpeed: 1
+  speedIncreasePerMinute: 0.5
   initialMovement: {x: 1, y: 0, z: 0}
   DamageEffect: {fileID: 4374688615660232719, guid: 8a8396f7049414e40aaad39e13f655b9,
     type: 3}
@@ -1253,7 +1254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec764de86e1b70478f34f53491e68ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lives: 30
+  lives: 3
   score: 0
 --- !u!4 &836377973
 Transform:
@@ -2501,7 +2502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f1db99e33fbbe4499783a389bc018cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 9, y: 9}
+  gridSize: {x: 11, y: 11}
 --- !u!4 &1917858263
 Transform:
   m_ObjectHideFlags: 0

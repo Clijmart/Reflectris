@@ -8,6 +8,8 @@ public class BallController : MonoBehaviour
     [SerializeField]
     private float initialSpeed = 1f;
     [SerializeField]
+    private float speedIncreasePerMinute = 0.5f;
+    [SerializeField]
     private Vector3 initialMovement;
 
     [Header("Effects")]
@@ -18,6 +20,8 @@ public class BallController : MonoBehaviour
 
     private float speed;
     private Vector3 movement;
+
+    private int SECONDS_PER_MINUTE = 60;
     
     private void Start()
     {
@@ -93,7 +97,7 @@ public class BallController : MonoBehaviour
 
     private float BallSpeedFromTime(float gameLength)
     {
-        return Mathf.Round(Mathf.Max(gameLength, 1) / 60 * 10f) / 10f + initialSpeed;
+        return Mathf.Floor(Mathf.Max(gameLength, 1) / SECONDS_PER_MINUTE * speedIncreasePerMinute * 10f) / 10f + initialSpeed;
     }
 
     public float GetSpeed()
