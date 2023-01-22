@@ -84,6 +84,8 @@ public class BlockManager : MonoBehaviour
 
     private bool WillCollide(GameObject parentPrefab, Vector3 placePosition)
     {
+        int selectedBlockRotation = GameDataManager.instance.GetSelectedBlockRotation();
+        parentPrefab.transform.rotation = Quaternion.Euler(new Vector3(0f, selectedBlockRotation, 0f));
         foreach (Transform child in parentPrefab.transform)
         {
             if (Physics.CheckSphere(placePosition + child.position, 0.1f, solidLayer)) return true;

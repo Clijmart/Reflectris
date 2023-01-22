@@ -37,7 +37,7 @@ public class InputManager : MonoBehaviour
         {
             GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: -90);
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetMouseButtonDown(1))
         {
             GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: 90);
         }

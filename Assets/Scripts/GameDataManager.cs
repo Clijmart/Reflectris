@@ -12,6 +12,8 @@ public class GameDataManager : MonoBehaviour
     [SerializeField]
     private int score = 0;
 
+    private float gameLength = 0;
+
     private BlockType selectedBlockType = BlockType.MULTIPLICATION;
     private int selectedBlockRotation = 0;
     private int FULL_ROTATION = 360;
@@ -19,6 +21,14 @@ public class GameDataManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Update()
+    {
+        if (lives > 0)
+        {
+            gameLength += Time.deltaTime;
+        }
     }
 
     public BlockType GetSelectedBlockType()
@@ -79,5 +89,10 @@ public class GameDataManager : MonoBehaviour
     {
         score += amount;
         return score;
+    }
+
+    public float GameLength()
+    {
+        return gameLength;
     }
 }
