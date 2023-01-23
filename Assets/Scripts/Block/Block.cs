@@ -16,6 +16,8 @@ public class Block : MonoBehaviour
     {
         if (blockWalls.Count <= 0)
         {
+            // Does this work?
+            BlockManager.instance.placedBlocks.Remove(this);
             Destroy(gameObject);
         }
     }

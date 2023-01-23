@@ -8,11 +8,14 @@ public class GameDataManager : MonoBehaviour
 
     [Header("Data Defaults")]
     [SerializeField]
-    private int lives = 3;
+    private int startLives = 3;
+    [SerializeField]
+    private int maxLives = 3;
     [SerializeField]
     private int score = 0;
 
     private float gameLength = 0;
+    private int lives;
 
     private BlockType selectedBlockType = BlockType.MULTIPLICATION;
     private int selectedBlockRotation = 0;
@@ -21,6 +24,11 @@ public class GameDataManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+    }
+
+    private void Start()
+    {
+        lives = startLives;
     }
 
     private void Update()
@@ -81,7 +89,7 @@ public class GameDataManager : MonoBehaviour
 
     public int ChangeLives(int amount)
     {
-        lives += amount;
+        lives = Mathf.Min(lives + amount, maxLives);
         return lives;
     }
 

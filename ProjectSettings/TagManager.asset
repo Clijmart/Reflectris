@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Border
   - Wall
+  - Item
   layers:
   - Default
   - TransparentFX

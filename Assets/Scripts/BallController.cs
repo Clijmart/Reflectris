@@ -45,20 +45,6 @@ public class BallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        Vector3 normal = collider.transform.forward;
-        //Debug.Log("normal: " + normal);
-        Vector3 reflected = Vector3.Reflect(movement, normal);
-        //Debug.Log("reflected: " + reflected);
-        movement.x = reflected.x;
-        movement.z = reflected.z;
-
-        bool straightWall = Mathf.RoundToInt(collider.transform.rotation.eulerAngles.y) % 90 == 0;
-        if (!straightWall)
-        {
-            //Debug.Log("Not straight wall! " + collider.transform.rotation.eulerAngles.y);
-            transform.position = collider.transform.position;
-        }
-
         if (collider.gameObject.CompareTag("Border"))
         {
             GameDataManager.instance.ChangeLives(-1);
@@ -70,7 +56,8 @@ public class BallController : MonoBehaviour
                 BlockManager.instance.DestroyAllBlocks();
 
                 Instantiate(DamageEffect, transform.position + new Vector3(0, 1, 0), Quaternion.Euler(0, 0, 0));
-            } else
+            }
+            else
             {
                 Destroy(gameObject);
 
@@ -85,6 +72,25 @@ public class BallController : MonoBehaviour
 
             GameDataManager.instance.ChangeScore(1);
             BlockManager.instance.MakeGhostBlockDirty();
+        }
+        else if (collider.gameObject.CompareTag("Item"))
+        {
+            collider.GetComponent<Item>().PickUp();
+            return;
+        }
+
+        Vector3 normal = collider.transform.forward;
+        //Debug.Log("normal: " + normal);
+        Vector3 reflected = Vector3.Reflect(movement, normal);
+        //Debug.Log("reflected: " + reflected);
+        movement.x = reflected.x;
+        movement.z = reflected.z;
+
+        bool straightWall = Mathf.RoundToInt(collider.transform.rotation.eulerAngles.y) % 90 == 0;
+        if (!straightWall)
+        {
+            //Debug.Log("Not straight wall! " + collider.transform.rotation.eulerAngles.y);
+            transform.position = collider.transform.position;
         }
 
         RoundPosition();
