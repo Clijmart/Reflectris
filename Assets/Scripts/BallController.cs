@@ -31,6 +31,11 @@ public class BallController : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.instance.IsRunning())
+        {
+            return;
+        }
+
         Vector3 normals = movement.normalized;
         speed = BallSpeedFromTime(GameDataManager.instance.GameLength());
         movement = speed * Time.deltaTime * normals;

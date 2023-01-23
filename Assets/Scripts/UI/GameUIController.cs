@@ -5,6 +5,9 @@ using TMPro;
 
 public class GameUIController : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI countdownText;
+
     [Header("Stats UI")]
     [SerializeField]
     private TextMeshProUGUI livesText;
@@ -21,13 +24,27 @@ public class GameUIController : MonoBehaviour
 
     private void Update()
     {
+        // Countdown
+        if (GameManager.instance.IsStarting())
+        {
+            countdownText.text = $"{Mathf.CeilToInt(GameManager.instance.GetCountdown())}";
+        } else
+        {
+            countdownText.text = "";
+        }
+
         // Stats
-        livesText.text = string.Format("{0} Lives", GameDataManager.instance.Lives());
-        scoreText.text = string.Format("{0} Score", GameDataManager.instance.Score());
+        livesText.text = $"{GameDataManager.instance.Lives()} Lives";
+        scoreText.text = $"{GameDataManager.instance.Score()} Score";
         gameLengthText.text = FormattedTime(Mathf.RoundToInt(GameDataManager.instance.GameLength()));
 
         // Objective
         equationText.text = ObjectiveManager.instance.CurrentObjective().GetEquation();
+    }
+
+    public void LeaveGame()
+    {
+        GameManager.instance.EndGame();
     }
 
     // Made using https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html

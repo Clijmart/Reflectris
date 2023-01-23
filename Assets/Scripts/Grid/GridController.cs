@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GridController : MonoBehaviour
@@ -8,7 +9,7 @@ public class GridController : MonoBehaviour
     public static GridController instance;
 
     [SerializeField]
-    private Vector2Int gridSize = new(9, 9);
+    private int2 gridSize = new(9, 9);
 
     private void Awake()
     {
@@ -56,7 +57,7 @@ public class GridController : MonoBehaviour
         return transform.position;
     }
 
-    public Vector2Int GetGridSize()
+    public int2 GetGridSize()
     {
         return gridSize;
     }

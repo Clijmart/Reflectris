@@ -25,7 +25,12 @@ public class GameDataManager : MonoBehaviour
 
     private void Update()
     {
-        if (lives > 0)
+        if (lives <= 0)
+        {
+            GameManager.instance.EndGame();
+        }
+
+        if (GameManager.instance.IsRunning())
         {
             gameLength += Time.deltaTime;
         }
