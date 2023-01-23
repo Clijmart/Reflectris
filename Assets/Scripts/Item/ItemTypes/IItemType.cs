@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public interface IItemType
@@ -11,6 +12,12 @@ public interface IItemType
     public abstract void PickUp();
 
     public abstract ItemType GetItemType();
+
+    public static IItemType RandomItemType()
+    {
+        List<IItemType> itemTypes = Enumerable.ToList(itemTypeObjects.Values);
+        return itemTypes[Random.Range(0, itemTypes.Count)];
+    }
 
     public static IItemType GetFromType(ItemType itemType)
     {

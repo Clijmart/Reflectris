@@ -67,7 +67,8 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        SetGameState(GameState.PAUSED);
+        if (IsRunning()) SetGameState(GameState.PAUSED);
+        else if (IsPaused()) RunGame();
     }
 
     public void EndGame()
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
         SetGameState(GameState.ENDING);
 
         IBlockType.blockTypeObjects.Clear();
+        IItemType.itemTypeObjects.Clear();
     }
 
     public bool IsStarting()

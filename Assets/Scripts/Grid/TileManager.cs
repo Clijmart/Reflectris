@@ -6,37 +6,47 @@ public class TileManager : MonoBehaviour
 {
     public static TileManager instance;
 
-    [Header("Tile Prefabs")]
+    [Header("Floor Prefabs")]
+
     [SerializeField]
     private List<GameObject> floorPrefabs;
+
+    [Header("Border Prefabs")]
     [SerializeField]
-    private List<GameObject> borderPrefabs;
+    private GameObject leftBorderPrefab;
+    [SerializeField]
+    private GameObject rightBorderPrefab;
+    [SerializeField]
+    private GameObject topBorderPrefab;
+    [SerializeField]
+    private GameObject bottomBorderPrefab;
 
     private void Awake()
     {
         instance = this;
     }
 
-    public GameObject PlaceTile(int col, int row, string tileType)
+    public GameObject PlaceTile(Vector2Int gridCell, string tileType)
     {
         GameObject tilePrefab;
 
         if (tileType.Equals("Floor"))
         {
-            tilePrefab = floorPrefabs[(row % floorPrefabs.Count + col % floorPrefabs.Count) % floorPrefabs.Count];
+            tilePrefab = floorPrefabs[(gridCell.y % floorPrefabs.Count + gridCell.x % floorPrefabs.Count) % floorPrefabs.Count];
         }
         else
         {
-            tilePrefab = borderPrefabs[row == -1 || row == GridController.instance.GetGridSize().y ? 0 : 1];
+            if (gridCell.y == GridController.instance.GetGridSize().y) tilePrefab = topBorderPrefab;
+            else if (gridCell.x == -1) tilePrefab = leftBorderPrefab;
+            else if (gridCell.x == GridController.instance.GetGridSize().x) tilePrefab = rightBorderPrefab;
+            else if (gridCell.y == -1) tilePrefab = bottomBorderPrefab;
+
+            else tilePrefab = topBorderPrefab;
         }
 
-        int startRowPosition = GridController.instance.GetGridSize().y / -2;
-        int startColPosition = GridController.instance.GetGridSize().x / -2;
-        
-        Vector3 pos = new(startColPosition + col, GridController.instance.GetGridPosition().y, startRowPosition + row);
-
+        Vector3 pos = GridController.instance.CellToPosition(gridCell);
         GameObject tile = Instantiate(tilePrefab, pos, tilePrefab.transform.rotation, GridController.instance.gameObject.transform);
-        tile.name = string.Format("Tile {0}_{1}", col, row);
+        tile.name = $"Tile {gridCell.x}_{gridCell.y}";
 
         return tile;
     }

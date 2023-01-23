@@ -15,8 +15,6 @@ public class GameUIController : MonoBehaviour
     private TextMeshProUGUI scoreText;
     [SerializeField]
     private TextMeshProUGUI gameLengthText;
-    [SerializeField]
-    private TextMeshProUGUI ballSpeedText;
 
     [Header("Objective UI")]
     [SerializeField]
@@ -45,6 +43,11 @@ public class GameUIController : MonoBehaviour
     public void LeaveGame()
     {
         GameManager.instance.EndGame();
+    }
+
+    public void PauseGame()
+    {
+        GameManager.instance.PauseGame();
     }
 
     // Made using https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html

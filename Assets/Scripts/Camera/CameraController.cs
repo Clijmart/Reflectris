@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
@@ -18,7 +17,7 @@ public class CameraController : MonoBehaviour
     {
         initialPosition = transform.position;
 
-        int2 gridSize = GridController.instance.GetGridSize();
+        Vector2Int gridSize = GridController.instance.GetGridSize();
         int largestSide = Mathf.Max(gridSize.x, gridSize.y);
         float ortho = 0.5f * largestSide + 1.5f;
 

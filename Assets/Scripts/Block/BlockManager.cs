@@ -34,6 +34,8 @@ public class BlockManager : MonoBehaviour
 
     public void Place(bool isGhost)
     {
+        if (!GameManager.instance.IsRunning() && !GameManager.instance.IsStarting()) return;
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 200.0f, floorLayer))
         {

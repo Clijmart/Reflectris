@@ -6,6 +6,9 @@ public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
 
+    [SerializeField]
+    private int itemCount = 3;
+
     public List<Item> spawnedItems = new();
 
     private void Awake()
@@ -13,16 +16,55 @@ public class ItemManager : MonoBehaviour
         instance = this;
     }
 
-    private void Start()
+    private void Update()
     {
-        Spawn(ItemType.COIN, new Vector3(-3f, GridController.instance.GetGridPosition().y, -3f));
-        Spawn(ItemType.HEALTH, new Vector3(3f, GridController.instance.GetGridPosition().y, 3f));
+        if (spawnedItems.Count == 0)
+        {
+            SpawnItems();
+        }
     }
 
-    public void Spawn(ItemType itemType, Vector3 spawnPosition)
+    private void Start()
     {
-        GameObject prefab = IItemType.itemTypeObjects[itemType].ItemPrefab();
+        SpawnItems();
+
+        //Spawn(ItemType.COIN, new Vector3(-3f, GridController.instance.GetGridPosition().y, -3f));
+        //Spawn(ItemType.HEALTH, new Vector3(3f, GridController.instance.GetGridPosition().y, 3f));
+    }
+
+    public void RespawnAllItems()
+    {
+        DespawnAllItems();
+        SpawnItems();
+    }
+
+    public void Spawn(IItemType itemType, Vector3 spawnPosition)
+    {
+        GameObject prefab = itemType.ItemPrefab();
 
         Instantiate(prefab, spawnPosition, Quaternion.identity);
+    }
+
+    public void SpawnItems()
+    {
+        List<Vector2Int> gridCells = GridController.instance.RandomGridCells(cellAmount: itemCount);
+        foreach (Vector2Int gridCell in gridCells)
+        {
+            Vector3 pos = GridController.instance.CellToPosition(gridCell);
+            Spawn(IItemType.RandomItemType(), pos);
+        }
+    }
+
+    public void DespawnAllItems()
+    {
+        for (int i = spawnedItems.Count - 1; i >= 0; i--)
+        {
+            if (spawnedItems[i] != null)
+            {
+                Destroy(spawnedItems[i].gameObject);
+            }
+        }
+
+        spawnedItems.Clear();
     }
 }
