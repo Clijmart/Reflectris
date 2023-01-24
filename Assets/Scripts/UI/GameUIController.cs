@@ -20,6 +20,12 @@ public class GameUIController : MenuUI
     [SerializeField]
     private TextMeshProUGUI equationText;
 
+    private void Start()
+    {
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().StopMusic();
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
+    }
+
     private void Update()
     {
         // Countdown
@@ -40,7 +46,7 @@ public class GameUIController : MenuUI
         equationText.text = ObjectiveManager.instance.CurrentObjective().GetEquation();
     }
 
-    public void LeaveGame()
+    public void GoToMenu()
     {
         GameManager.instance.EndGame();
     }

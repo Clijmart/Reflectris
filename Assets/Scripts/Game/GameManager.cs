@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private float startCountdownLength = 5f;
+    [SerializeField]
+    private float endCountdownLength = 5f;
 
     private float countdown;
 
@@ -25,15 +27,18 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (countdown > 0)
+        {
+            countdown -= Time.deltaTime;
+            return;
+        }
+
         if (IsStarting())
         {
-            if (countdown > 0)
-            {
-                countdown -= Time.deltaTime;
-            } else
-            {
-                RunGame();
-            }
+            RunGame();
+        } else if (IsEnding())
+        {
+            LeaveGame();
         }
     }
 
@@ -73,12 +78,18 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        SetGameState(GameState.ENDING);
-
-        IBlockType.blockTypeObjects.Clear();
-        IItemType.itemTypeObjects.Clear();
+        if (IsEnding()) return;
 
         StatisticsManager.instance.SaveGame();
+
+        countdown = endCountdownLength;
+        SetGameState(GameState.ENDING);
+    }
+
+    public void LeaveGame()
+    {
+        IBlockType.blockTypeObjects.Clear();
+        IItemType.itemTypeObjects.Clear();
 
         SceneManager.instance.OpenMain();
     }

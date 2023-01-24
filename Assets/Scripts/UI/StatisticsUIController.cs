@@ -17,6 +17,11 @@ public class StatisticsUIController : MenuUI
     [SerializeField]
     private TextMeshProUGUI totalTimeText;
 
+    private void Start()
+    {
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
+    }
+
     private void Update()
     {
         // Stats
