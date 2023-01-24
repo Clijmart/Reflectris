@@ -31,11 +31,11 @@ public class InputManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: -90);
+            RotateLeft();
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetMouseButtonDown(1))
         {
-            GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: 90);
+            RotateRight();
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -62,5 +62,15 @@ public class InputManager : MonoBehaviour
     public void SelectDivisionBlock()
     {
         GameDataManager.instance.SetSelectedBlockType(BlockType.DIVISION);
+    }
+
+    public void RotateLeft()
+    {
+        GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: -90);
+    }
+
+    public void RotateRight()
+    {
+        GameDataManager.instance.ChangeSelectedBlockRotation(rotationChange: 90);
     }
 }
