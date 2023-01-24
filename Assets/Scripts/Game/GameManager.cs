@@ -77,6 +77,10 @@ public class GameManager : MonoBehaviour
 
         IBlockType.blockTypeObjects.Clear();
         IItemType.itemTypeObjects.Clear();
+
+        StatisticsManager.instance.SaveGame();
+
+        SceneManager.instance.OpenMain();
     }
 
     public bool IsStarting()

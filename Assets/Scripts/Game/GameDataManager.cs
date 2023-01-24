@@ -33,7 +33,7 @@ public class GameDataManager : MonoBehaviour
 
     private void Update()
     {
-        if (lives <= 0)
+        if (lives <= 0 && GameManager.instance.IsRunning())
         {
             GameManager.instance.EndGame();
         }

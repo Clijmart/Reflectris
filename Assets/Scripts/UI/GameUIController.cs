@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class GameUIController : MonoBehaviour
+public class GameUIController : MenuUI
 {
     [SerializeField]
     private TextMeshProUGUI countdownText;
