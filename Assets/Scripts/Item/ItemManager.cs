@@ -27,9 +27,6 @@ public class ItemManager : MonoBehaviour
     private void Start()
     {
         SpawnItems();
-
-        //Spawn(ItemType.COIN, new Vector3(-3f, GridController.instance.GetGridPosition().y, -3f));
-        //Spawn(ItemType.HEALTH, new Vector3(3f, GridController.instance.GetGridPosition().y, 3f));
     }
 
     public void RespawnAllItems()
@@ -47,6 +44,8 @@ public class ItemManager : MonoBehaviour
 
     public void SpawnItems()
     {
+        if (!GameManager.instance.IsRunning()) return;
+
         List<Vector2Int> gridCells = GridController.instance.RandomGridCells(cellAmount: itemCount);
         foreach (Vector2Int gridCell in gridCells)
         {
