@@ -52,14 +52,13 @@ public class GameDataManager : MonoBehaviour
     public void SetSelectedBlockType(BlockType blockType)
     {
         selectedBlockType = blockType;
-        BlockManager.instance.MakeGhostBlockDirty();
+        ResetSelectedBlockRotation();
     }
 
     public BlockType ChangeSelectedBlockType(int cycleAmount)
     {
         BlockType nextBlockType = IBlockType.RelaviteBlockType(GetSelectedBlockType(), cycleAmount);
         SetSelectedBlockType(nextBlockType);
-        ResetSelectedBlockRotation();
 
         return nextBlockType;
     }

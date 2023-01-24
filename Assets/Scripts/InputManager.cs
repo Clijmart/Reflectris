@@ -8,23 +8,19 @@ public class InputManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            GameDataManager.instance.SetSelectedBlockType(BlockType.ADDITION);
-            GameDataManager.instance.ResetSelectedBlockRotation();
+            SelectAdditionBlock();
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            GameDataManager.instance.SetSelectedBlockType(BlockType.SUBTRACTION);
-            GameDataManager.instance.ResetSelectedBlockRotation();
+            SelectSubtractionBlock();
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            GameDataManager.instance.SetSelectedBlockType(BlockType.MULTIPLICATION);
-            GameDataManager.instance.ResetSelectedBlockRotation();
+            SelectMultiplicationBlock();
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            GameDataManager.instance.SetSelectedBlockType(BlockType.DIVISION);
-            GameDataManager.instance.ResetSelectedBlockRotation();
+            SelectDivisionBlock();
         }
 
         if (Input.mouseScrollDelta.y != 0)
@@ -46,5 +42,25 @@ public class InputManager : MonoBehaviour
         {
             BlockManager.instance.Place(isGhost: false);
         }
+    }
+
+    public void SelectAdditionBlock()
+    {
+        GameDataManager.instance.SetSelectedBlockType(BlockType.ADDITION);
+    }
+
+    public void SelectSubtractionBlock()
+    {
+        GameDataManager.instance.SetSelectedBlockType(BlockType.SUBTRACTION);
+    }
+
+    public void SelectMultiplicationBlock()
+    {
+        GameDataManager.instance.SetSelectedBlockType(BlockType.MULTIPLICATION);
+    }
+
+    public void SelectDivisionBlock()
+    {
+        GameDataManager.instance.SetSelectedBlockType(BlockType.DIVISION);
     }
 }
