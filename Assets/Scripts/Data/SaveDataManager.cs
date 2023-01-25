@@ -4,11 +4,19 @@ public static class SaveDataManager
 {
     private static Dictionary<string, ISaveable> saveables = new();
 
+    /// <summary>
+    /// Add a saveable instance to the dictionary.
+    /// </summary>
+    /// <param name="saveableType">The type of saveable.</param>
+    /// <param name="saveable">The saveable instance</param>
     public static void AddSaveable(string saveableType, ISaveable saveable)
     {
         saveables[saveableType] = saveable;
     }
 
+    /// <summary>
+    /// Save the data from the saveable instances to the json file.
+    /// </summary>
     public static void SaveJsonData()
     {
         SaveData saveData = new();
@@ -23,6 +31,9 @@ public static class SaveDataManager
         }
     }
 
+    /// <summary>
+    /// Load the data to the saveable instances from the json file.
+    /// </summary>
     public static void LoadJsonData()
     {
         if (FileManager.LoadFromFile("SaveData.dat", out var json))

@@ -72,11 +72,3 @@ public interface IBlockType
         return blockTypes[wanted];
     }
 }
-
-public enum BlockType
-{
-    ADDITION,
-    SUBTRACTION,
-    MULTIPLICATION,
-    DIVISION,
-}

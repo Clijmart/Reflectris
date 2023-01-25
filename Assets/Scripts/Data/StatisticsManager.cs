@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class StatisticsManager : MonoBehaviour, ISaveable
@@ -12,17 +10,26 @@ public class StatisticsManager : MonoBehaviour, ISaveable
     public float bestTime;
     public float totalTime;
 
+    /// <summary>
+    /// Called when the instance is being loaded.
+    /// </summary>
     private void Awake()
     {
         instance = this;
-        SaveDataManager.AddSaveable("Statistics", instance);
+        SaveDataManager.AddSaveable(saveableType: "Statistics", saveable: instance);
     }
 
+    /// <summary>
+    /// Called just before any of the Update methods is called the first time.
+    /// </summary>
     private void Start()
     {
         SaveDataManager.LoadJsonData();
     }
 
+    /// <summary>
+    /// Save a game's statistics.
+    /// </summary>
     public void SaveGame()
     {
         SaveDataManager.LoadJsonData();
@@ -42,6 +49,10 @@ public class StatisticsManager : MonoBehaviour, ISaveable
         SaveDataManager.SaveJsonData();
     }
 
+    /// <summary>
+    /// Populate the save data with statistics data.
+    /// </summary>
+    /// <param name="saveData">Save data to populate.</param>
     public void PopulateSaveData(SaveData saveData)
     {
         saveData.statisticsData.bestScore = bestScore;
@@ -51,6 +62,10 @@ public class StatisticsManager : MonoBehaviour, ISaveable
         saveData.statisticsData.totalTime = totalTime;
     }
 
+    /// <summary>
+    /// Load statistics data from save data.
+    /// </summary>
+    /// <param name="saveData">Save data to load from.</param>
     public void LoadFromSaveData(SaveData saveData)
     {
         bestScore = saveData.statisticsData.bestScore;

@@ -49,9 +49,3 @@ public interface IItemType
         return itemTypeObjects[itemType];
     }
 }
-
-public enum ItemType
-{
-    COIN,
-    HEALTH,
-}
