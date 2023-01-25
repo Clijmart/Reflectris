@@ -11,16 +11,17 @@ public class SettingsManager : MonoBehaviour, ISaveable
     private void Awake()
     {
         instance = this;
+        SaveDataManager.AddSaveable("Settings", instance);
     }
 
     public void LoadSettings()
     {
-        LoadJsonData(instance);
+        SaveDataManager.LoadJsonData();
     }
 
     public void SaveSettings()
     {
-        SaveJsonData(instance);
+        SaveDataManager.SaveJsonData();
     }
 
     public void PopulateSaveData(SaveData saveData)
@@ -28,31 +29,8 @@ public class SettingsManager : MonoBehaviour, ISaveable
         saveData.settingsData.volume = volume;
     }
 
-    private static void SaveJsonData(SettingsManager settingsManager)
-    {
-        SaveData saveData = new();
-        settingsManager.PopulateSaveData(saveData);
-
-        if (FileManager.WriteToFile("SaveData.dat", saveData.ToJson()))
-        {
-            Debug.Log("Save successful");
-        }
-    }
-
     public void LoadFromSaveData(SaveData saveData)
     {
         volume = saveData.settingsData.volume;
-    }
-
-    private static void LoadJsonData(SettingsManager settingsManager)
-    {
-        if (FileManager.LoadFromFile("SaveData.dat", out var json))
-        {
-            SaveData saveData = new();
-            saveData.LoadFromJson(json);
-
-            settingsManager.LoadFromSaveData(saveData);
-            Debug.Log("Load complete");
-        }
     }
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 // Made using https://youtu.be/uD7y4T4PVk0
 [System.Serializable]

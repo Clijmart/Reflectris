@@ -15,16 +15,17 @@ public class StatisticsManager : MonoBehaviour, ISaveable
     private void Awake()
     {
         instance = this;
+        SaveDataManager.AddSaveable("Statistics", instance);
     }
 
     private void Start()
     {
-        LoadJsonData(instance);
+        SaveDataManager.LoadJsonData();
     }
 
     public void SaveGame()
     {
-        LoadJsonData(instance);
+        SaveDataManager.LoadJsonData();
 
         int gameScore = GameDataManager.instance.Score();
         if (gameScore > bestScore) bestScore = gameScore;
@@ -38,7 +39,7 @@ public class StatisticsManager : MonoBehaviour, ISaveable
 
         totalTime += gameTime;
 
-        SaveJsonData(instance);
+        SaveDataManager.SaveJsonData();
     }
 
     public void PopulateSaveData(SaveData saveData)
@@ -50,34 +51,12 @@ public class StatisticsManager : MonoBehaviour, ISaveable
         saveData.statisticsData.totalTime = totalTime;
     }
 
-    private static void SaveJsonData(StatisticsManager statisticsManager)
-    {
-        SaveData saveData = new SaveData();
-        statisticsManager.PopulateSaveData(saveData);
-
-        if (FileManager.WriteToFile("SaveData.dat", saveData.ToJson()))
-        {
-            Debug.Log("Save successful");
-        }
-    }
-
     public void LoadFromSaveData(SaveData saveData)
     {
         bestScore = saveData.statisticsData.bestScore;
         totalScore = saveData.statisticsData.totalScore;
         plays = saveData.statisticsData.plays;
         bestTime = saveData.statisticsData.bestTime;
-    }
-
-    private static void LoadJsonData(StatisticsManager statisticsManager)
-    {
-        if (FileManager.LoadFromFile("SaveData.dat", out var json))
-        {
-            SaveData saveData = new SaveData();
-            saveData.LoadFromJson(json);
-
-            statisticsManager.LoadFromSaveData(saveData);
-            Debug.Log("Load complete");
-        }
+        totalTime = saveData.statisticsData.totalTime;
     }
 }
