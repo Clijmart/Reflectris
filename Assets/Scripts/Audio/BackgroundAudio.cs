@@ -8,6 +8,7 @@ public class BackgroundAudio : MonoBehaviour
     private static BackgroundAudio instance = null;
 
     private AudioSource audioSource;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -21,6 +22,11 @@ public class BackgroundAudio : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        audioSource.volume = AudioManager.instance.VolumeMultiplier();
+    }
+
     public void PlayMusic()
     {
         if (audioSource.isPlaying) return;
@@ -30,5 +36,11 @@ public class BackgroundAudio : MonoBehaviour
     public void StopMusic()
     {
         audioSource.Stop();
+    }
+
+    public void ReplayMusic()
+    {
+        StopMusic();
+        PlayMusic();
     }
 }

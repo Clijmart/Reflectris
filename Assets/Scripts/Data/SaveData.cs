@@ -17,7 +17,14 @@ public class SaveData
         public float totalTime;
     }
 
+    [System.Serializable]
+    public struct SettingsData
+    {
+        public float volume;
+    }
+
     public StatisticsData statisticsData;
+    public SettingsData settingsData;
     
     public string ToJson()
     {

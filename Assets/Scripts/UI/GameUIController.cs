@@ -22,8 +22,9 @@ public class GameUIController : MenuUI
 
     private void Start()
     {
-        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().StopMusic();
-        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
+        SettingsManager.instance.LoadSettings();
+
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().ReplayMusic();
     }
 
     private void Update()

@@ -21,13 +21,18 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(AudioClip audioClip, float volume)
     {
         audioSource.clip = audioClip;
-        audioSource.volume = volume;
+        audioSource.volume = volume * VolumeMultiplier();
         audioSource.Play();
     }
 
     public void PlayRandomSound(AudioClip[] audioClips, float volume)
     {
         int rand = Random.Range(0, audioClips.Length);
-        PlaySound(audioClips[rand], volume);
+        PlaySound(audioClips[rand], volume * VolumeMultiplier());
+    }
+
+    public float VolumeMultiplier()
+    {
+        return SettingsManager.instance.volume;
     }
 }

@@ -19,6 +19,8 @@ public class StatisticsUIController : MenuUI
 
     private void Start()
     {
+        SettingsManager.instance.LoadSettings();
+
         GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
     }
 
