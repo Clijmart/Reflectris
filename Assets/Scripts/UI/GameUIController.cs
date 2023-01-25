@@ -21,7 +21,7 @@ public class GameUIController : MenuUI
     {
         SaveDataManager.LoadJsonData();
 
-        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().ReplayMusic();
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudioController>().ReplayMusic();
     }
 
     /// <summary>

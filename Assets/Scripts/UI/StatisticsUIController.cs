@@ -17,7 +17,7 @@ public class StatisticsUIController : MenuUI
     {
         SaveDataManager.LoadJsonData();
 
-        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudioController>().PlayMusic();
     }
 
     /// <summary>

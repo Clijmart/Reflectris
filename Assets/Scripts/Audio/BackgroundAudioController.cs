@@ -4,9 +4,9 @@ using UnityEngine;
 /// Object used to play background audio.
 /// Made using https://answers.unity.com/questions/1260393/make-music-continue-playing-through-scenes.html
 /// </summary>
-public class BackgroundAudio : MonoBehaviour
+public class BackgroundAudioController : MonoBehaviour
 {
-    private static BackgroundAudio instance = null;
+    private static BackgroundAudioController instance = null;
 
     private AudioSource audioSource;
 

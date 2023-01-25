@@ -17,7 +17,7 @@ public class SettingsUIController : MenuUI
 
         volumeSlider.value = GetVolume();
 
-        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudioController>().PlayMusic();
     }
 
     /// <summary>

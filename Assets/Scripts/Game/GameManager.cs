@@ -101,12 +101,12 @@ public class GameManager : MonoBehaviour
         if (IsRunning())
         {
             SetGameState(GameState.PAUSED);
-            GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PauseMusic();
+            GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudioController>().PauseMusic();
         }
         else if (IsPaused())
         {
             SetGameState(GameState.RUNNING);
-            GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().UnPauseMusic();
+            GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudioController>().UnPauseMusic();
         }
     }
 
@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
         if (IsEnding()) return;
 
         StatisticsManager.instance.SaveGame();
-        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().StopMusic();
+        GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudioController>().StopMusic();
 
         if (instant)
         {
