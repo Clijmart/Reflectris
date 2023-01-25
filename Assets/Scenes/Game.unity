@@ -749,11 +749,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1638d2c7115c5e444b9f8a2d49a3abce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedBlocks: []
-  blockErrorSoundVolume: 0.3
+  blockErrorSoundVolume: 0.4
   blockErrorSounds:
   - {fileID: 8300000, guid: 4bfa09a8cb03f4b439b425e3bdf9ed05, type: 3}
-  blockPlaceSoundVolume: 0.5
+  blockPlaceSoundVolume: 0.6
   blockPlaceSounds:
   - {fileID: 8300000, guid: 5d45283a97f6abd40b9febbc05c6f681, type: 3}
   - {fileID: 8300000, guid: cf0babcade623ca4a955f14ab1049364, type: 3}
@@ -763,6 +762,7 @@ MonoBehaviour:
   floorLayer:
     serializedVersion: 2
     m_Bits: 512
+  placedBlocks: []
 --- !u!1 &172007176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2209,7 +2209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startLives: 3
   maxLives: 3
-  score: 0
+  selectedBlockType: 2
 --- !u!4 &836377973
 Transform:
   m_ObjectHideFlags: 0

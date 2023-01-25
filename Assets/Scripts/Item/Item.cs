@@ -1,17 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField]
-    private ItemType itemType;
+    [Header("Item Options")]
+    [SerializeField] private ItemType itemType;
 
+    /// <summary>
+    /// Called just before any of the Update methods is called the first time.
+    /// </summary>
     private void Start()
     {
         ItemManager.instance.spawnedItems.Add(this);
     }
 
+    /// <summary>
+    /// Pick up the item and spawn pickup effect.
+    /// </summary>
     public void PickUp()
     {
         IItemType item = IItemType.GetFromType(itemType);
@@ -23,6 +27,9 @@ public class Item : MonoBehaviour
         Remove();
     }
 
+    /// <summary>
+    /// Remove the item from the grid.
+    /// </summary>
     public void Remove()
     {
         ItemManager.instance.spawnedItems.Remove(this);

@@ -4,11 +4,8 @@ public class StatisticsManager : MonoBehaviour, ISaveable
 {
     public static StatisticsManager instance;
 
-    public int bestScore;
-    public int totalScore;
-    public int plays;
-    public float bestTime;
-    public float totalTime;
+    public int bestScore, totalScore, plays;
+    public float bestTime, totalTime;
 
     /// <summary>
     /// Called when the instance is being loaded.
@@ -35,6 +32,9 @@ public class StatisticsManager : MonoBehaviour, ISaveable
         SaveDataManager.LoadJsonData();
 
         int gameScore = GameDataManager.instance.Score();
+        int bonusScore = Mathf.RoundToInt(GameDataManager.instance.GameLength());
+        gameScore += bonusScore;
+
         if (gameScore > bestScore) bestScore = gameScore;
         
         totalScore += gameScore;

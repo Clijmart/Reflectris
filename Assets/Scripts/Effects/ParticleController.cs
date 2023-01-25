@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticleController : MonoBehaviour
 {
-    [SerializeField]
-    public float lifetime = 3f;
+    [Header("Particle Options")]
+    [SerializeField] public float lifetime = 3f;
 
+    /// <summary>
+    /// Called just before any of the Update methods is called the first time.
+    /// </summary>
     void Start()
     {
         Destroy(gameObject, lifetime);

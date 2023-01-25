@@ -1,17 +1,17 @@
 using UnityEngine;
 
-// Made using https://youtu.be/uD7y4T4PVk0
+/// <summary>
+/// Object data is saved to.
+/// Made using https://youtu.be/uD7y4T4PVk0
+/// </summary>
 [System.Serializable]
 public class SaveData
 {
     [System.Serializable]
     public struct StatisticsData
     {
-        public int bestScore;
-        public int totalScore;
-        public int plays;
-        public float bestTime;
-        public float totalTime;
+        public int bestScore, totalScore, plays;
+        public float bestTime, totalTime;
     }
 
     [System.Serializable]
