@@ -1,30 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class MainMenuUIController : MenuUI
 {
+    /// <summary>
+    /// Called just before any of the Update methods is called the first time.
+    /// </summary>
     private void Start()
     {
-        SettingsManager.instance.LoadSettings();
+        SaveDataManager.LoadJsonData();
 
         GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
     }
 
+    /// <summary>
+    /// Called every frame.
+    /// </summary>
     private void Update()
+    {
+        ReadUserInput();
+    }
+
+    /// <summary>
+    /// Read the user inputs.
+    /// </summary>
+    private void ReadUserInput()
     {
         if (Input.GetKeyDown(KeyCode.Slash))
         {
-            SceneManager.instance.StartGame();
+            MenuManager.OpenGameMenu();
         }
         if (Input.GetKeyDown(KeyCode.Minus))
         {
-            SceneManager.instance.OpenStats();
+            MenuManager.OpenStatisticsMenu();
         }
         if (Input.GetKeyDown(KeyCode.Plus) || Input.GetKeyDown(KeyCode.Equals))
         {
-            SceneManager.instance.OpenSettings();
+            MenuManager.OpenSettingsMenu();
         }
     }
 }

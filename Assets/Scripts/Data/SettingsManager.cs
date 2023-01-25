@@ -14,16 +14,6 @@ public class SettingsManager : MonoBehaviour, ISaveable
         SaveDataManager.AddSaveable("Settings", instance);
     }
 
-    public void LoadSettings()
-    {
-        SaveDataManager.LoadJsonData();
-    }
-
-    public void SaveSettings()
-    {
-        SaveDataManager.SaveJsonData();
-    }
-
     public void PopulateSaveData(SaveData saveData)
     {
         saveData.settingsData.volume = volume;

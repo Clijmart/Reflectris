@@ -1,32 +1,32 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class GameUIController : MenuUI
 {
-    [SerializeField]
-    private TextMeshProUGUI countdownText;
+    [Header("Countdown UI")]
+    [SerializeField] private TextMeshProUGUI countdownText;
 
     [Header("Stats UI")]
-    [SerializeField]
-    private TextMeshProUGUI livesText;
-    [SerializeField]
-    private TextMeshProUGUI scoreText;
-    [SerializeField]
-    private TextMeshProUGUI gameLengthText;
+    [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private TextMeshProUGUI gameLengthText;
 
     [Header("Objective UI")]
-    [SerializeField]
-    private TextMeshProUGUI equationText;
+    [SerializeField] private TextMeshProUGUI equationText;
 
+    /// <summary>
+    /// Called just before any of the Update methods is called the first time.
+    /// </summary>
     private void Start()
     {
-        SettingsManager.instance.LoadSettings();
+        SaveDataManager.LoadJsonData();
 
         GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().ReplayMusic();
     }
 
+    /// <summary>
+    /// Called every frame.
+    /// </summary>
     private void Update()
     {
         // Countdown
@@ -41,29 +41,25 @@ public class GameUIController : MenuUI
         // Stats
         livesText.text = $"{GameDataManager.instance.Lives()} Lives";
         scoreText.text = $"{GameDataManager.instance.Score()} Score";
-        gameLengthText.text = FormattedTime(Mathf.RoundToInt(GameDataManager.instance.GameLength()));
+        gameLengthText.text = TimeUtil.FormattedTime(timeInSeconds: Mathf.RoundToInt(GameDataManager.instance.GameLength()), includeHours: false);
 
         // Objective
         equationText.text = ObjectiveManager.instance.CurrentObjective().GetEquation();
     }
 
+    /// <summary>
+    /// Go to the main menu screen.
+    /// </summary>
     public void GoToMenu()
     {
         GameManager.instance.EndGame(instant: true);
     }
 
+    /// <summary>
+    /// Pause the game.
+    /// </summary>
     public void PauseGame()
     {
         GameManager.instance.PauseGame();
-    }
-
-    // Made using https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html
-    private string FormattedTime(int timeInSeconds)
-    {
-        int minutes = Mathf.FloorToInt(timeInSeconds / 60F);
-        int seconds = Mathf.FloorToInt(timeInSeconds - minutes * 60);
-        string formattedTime = string.Format("{0:0}:{1:00}", minutes, seconds);
-
-        return formattedTime;
     }
 }

@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
         IBlockType.blockTypeObjects.Clear();
         IItemType.itemTypeObjects.Clear();
 
-        SceneManager.instance.OpenMain();
+        MenuManager.OpenMainMenu();
     }
 
     public bool IsStarting()

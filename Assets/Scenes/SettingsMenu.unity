@@ -135,7 +135,6 @@ GameObject:
   - component: {fileID: 24961920}
   - component: {fileID: 24961919}
   - component: {fileID: 24961918}
-  - component: {fileID: 24961917}
   - component: {fileID: 24961916}
   - component: {fileID: 24961915}
   - component: {fileID: 24961914}
@@ -199,18 +198,6 @@ MonoBehaviour:
   clickSound: {fileID: 8300000, guid: 1aefbe5f9beca3d4d93eaeacd8241731, type: 3}
   volumeSlider: {fileID: 1960389308}
   volumeText: {fileID: 606432158}
---- !u!114 &24961917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 24961913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e394bd0b471a5049b919822c2d10e96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &24961918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,9 +390,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 24961917}
-        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
-        m_MethodName: OpenMain
+      - m_Target: {fileID: 24961916}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: OpenMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

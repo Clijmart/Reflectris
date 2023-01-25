@@ -813,9 +813,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 807283867}
-        m_TargetAssemblyTypeName: SceneManager, Assembly-CSharp
-        m_MethodName: OpenMain
+      - m_Target: {fileID: 807283872}
+        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+        m_MethodName: OpenMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1030,7 +1030,6 @@ GameObject:
   - component: {fileID: 807283870}
   - component: {fileID: 807283869}
   - component: {fileID: 807283868}
-  - component: {fileID: 807283867}
   - component: {fileID: 807283872}
   - component: {fileID: 807283866}
   - component: {fileID: 807283865}
@@ -1079,18 +1078,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807283864}
   m_CullTransparentMesh: 1
---- !u!114 &807283867
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807283864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e394bd0b471a5049b919822c2d10e96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &807283868
 MonoBehaviour:
   m_ObjectHideFlags: 0

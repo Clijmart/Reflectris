@@ -15,7 +15,7 @@ public class StatisticsUIController : MenuUI
     /// </summary>
     private void Start()
     {
-        SettingsManager.instance.LoadSettings();
+        SaveDataManager.LoadJsonData();
 
         GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudio>().PlayMusic();
     }
@@ -29,24 +29,7 @@ public class StatisticsUIController : MenuUI
         bestScoreText.text = $"Best: {StatisticsManager.instance.bestScore}";
         totalScoreText.text = $"Total: {StatisticsManager.instance.totalScore}";
         playsText.text = $"Plays: {StatisticsManager.instance.plays}";
-        bestTimeText.text = $"Best: {FormattedTime(Mathf.RoundToInt(StatisticsManager.instance.bestTime))}";
-        totalTimeText.text = $"Total: {FormattedTime(Mathf.RoundToInt(StatisticsManager.instance.totalTime))}";
-    }
-
-    /// <summary>
-    /// Turn time into a nicely formatted string.
-    /// </summary>
-    /// <param name="timeInSeconds">Time in seconds.</param>
-    /// <returns>A formatted string.</returns>
-    private string FormattedTime(int timeInSeconds)
-    {
-        // Made with the help of https://answers.unity.com/questions/45676/making-a-timer-0000-minutes-and-seconds.html
-        int hours = Mathf.FloorToInt(timeInSeconds / 3600f);
-        int minutes = Mathf.FloorToInt((timeInSeconds - hours * 3600) / 60f);
-        int seconds = Mathf.FloorToInt(timeInSeconds - hours * 3600 - minutes * 60);
-        string formattedTime = $"{hours:00}:{minutes:00}:{seconds:00}";
-        //string formattedTime = string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
-
-        return formattedTime;
+        bestTimeText.text = $"Best: {TimeUtil.FormattedTime(timeInSeconds: Mathf.RoundToInt(StatisticsManager.instance.bestTime), includeHours: false)}";
+        totalTimeText.text = $"Total: {TimeUtil.FormattedTime(timeInSeconds: Mathf.RoundToInt(StatisticsManager.instance.totalTime), includeHours: true)}";
     }
 }
