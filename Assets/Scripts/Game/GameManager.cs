@@ -76,11 +76,17 @@ public class GameManager : MonoBehaviour
         else if (IsPaused()) RunGame();
     }
 
-    public void EndGame()
+    public void EndGame(bool instant)
     {
         if (IsEnding()) return;
 
         StatisticsManager.instance.SaveGame();
+
+        if (instant)
+        {
+            LeaveGame();
+            return;
+        }
 
         countdown = endCountdownLength;
         SetGameState(GameState.ENDING);

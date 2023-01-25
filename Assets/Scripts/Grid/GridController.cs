@@ -52,14 +52,15 @@ public class GridController : MonoBehaviour
         return new Vector2Int(x, y);
     }
 
-    public List<Vector2Int> RandomGridCells(int cellAmount)
+    public List<Vector2Int> RandomGridCells(int cellAmount, bool bordered)
     {
         List<Vector2Int> gridCells = new();
         List<Vector2Int> tempCells = new();
+        int borderedInt = bordered ? 1 : 0;
 
-        for (int x = 0; x < gridSize.x; x++)
+        for (int x = 0 + borderedInt; x < gridSize.x - borderedInt; x++)
         {
-            for (int y = 0; y < gridSize.y; y++)
+            for (int y = 0 + borderedInt; y < gridSize.y - borderedInt; y++)
             {
                 tempCells.Add(new Vector2Int(x, y));
             }

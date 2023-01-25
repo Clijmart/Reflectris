@@ -35,7 +35,7 @@ public class GameDataManager : MonoBehaviour
     {
         if (lives <= 0 && GameManager.instance.IsRunning())
         {
-            GameManager.instance.EndGame();
+            GameManager.instance.EndGame(instant: false);
         }
 
         if (GameManager.instance.IsRunning())

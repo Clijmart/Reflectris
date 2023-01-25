@@ -46,7 +46,7 @@ public class ItemManager : MonoBehaviour
     {
         if (!GameManager.instance.IsRunning()) return;
 
-        List<Vector2Int> gridCells = GridController.instance.RandomGridCells(cellAmount: itemCount);
+        List<Vector2Int> gridCells = GridController.instance.RandomGridCells(cellAmount: itemCount, bordered: true);
         foreach (Vector2Int gridCell in gridCells)
         {
             Vector3 pos = GridController.instance.CellToPosition(gridCell);

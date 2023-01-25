@@ -49,7 +49,7 @@ public class GameUIController : MenuUI
 
     public void GoToMenu()
     {
-        GameManager.instance.EndGame();
+        GameManager.instance.EndGame(instant: true);
     }
 
     public void PauseGame()
