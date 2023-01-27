@@ -63,7 +63,7 @@ public class GameUIController : MenuUI
 
             // Time
             float gameTime = GameDataManager.instance.GameLength();
-            summaryTimeText.text = TimeUtil.FormattedTime(Mathf.FloorToInt(gameTime), false);
+            summaryTimeText.text = $"Game: {TimeUtil.FormattedTime(Mathf.FloorToInt(gameTime), false)}";
 
             float bestTime = StatisticsManager.instance.bestTime;
             if (gameTime >= bestTime)
