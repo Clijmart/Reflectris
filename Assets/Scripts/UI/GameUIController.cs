@@ -14,6 +14,10 @@ public class GameUIController : MenuUI
     [Header("Objective UI")]
     [SerializeField] private TextMeshProUGUI equationText;
 
+    [Header("Pause UI")]
+    [SerializeField] private GameObject pausePanel;
+    [SerializeField] private TextMeshProUGUI pauseButtonText;
+
     /// <summary>
     /// Called just before any of the Update methods is called the first time.
     /// </summary>
@@ -29,6 +33,10 @@ public class GameUIController : MenuUI
     /// </summary>
     private void Update()
     {
+        // Pause
+        pausePanel.SetActive(GameManager.instance.IsPaused());
+        pauseButtonText.text = GameManager.instance.IsPaused() ? "Resume" : "Pause";
+
         // Countdown
         if (GameManager.instance.IsStarting())
         {

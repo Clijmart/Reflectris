@@ -43,8 +43,11 @@ public static class FileManager
         }
         catch (Exception e)
         {
-            Debug.LogError($"Failed to read from {fullPath} with exception {e}");
             result = "";
+            if (!File.Exists(fullPath))
+                Debug.Log($"No save data to read from {fullPath}. Using default values.");
+            else
+                Debug.LogError($"Failed to read from {fullPath} with exception {e}");
             return false;
         }
     }
