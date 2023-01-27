@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Countdowns")]
     [SerializeField] private float startCountdownLength = 5f;
-    [SerializeField] private float endCountdownLength = 5f;
+    [SerializeField] private float endCountdownLength = 3f;
 
     private GameState gameState;
     private float countdown;
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             RunGame();
         } else if (IsEnding())
         {
-            LeaveGame();
+            GameOver();
         }
     }
 
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
     /// <param name="instant">Whether or not the game should end instantly.</param>
     public void EndGame(bool instant)
     {
-        if (IsEnding()) return;
+        if (IsEnding() || IsGameOver()) return;
 
         StatisticsManager.instance.SaveGame();
         GameObject.FindGameObjectWithTag("BackgroundAudio").GetComponent<BackgroundAudioController>().StopMusic();
@@ -129,6 +129,15 @@ public class GameManager : MonoBehaviour
 
         countdown = endCountdownLength;
         SetGameState(GameState.ENDING);
+    }
+
+    /// <summary>
+    /// Set the gamestate to gameover, after the ending state.
+    /// </summary>
+    public void GameOver()
+    {
+        if (!IsEnding()) return;
+        SetGameState(GameState.GAMEOVER);
     }
 
     /// <summary>
@@ -176,5 +185,14 @@ public class GameManager : MonoBehaviour
     public bool IsEnding()
     {
         return GetGameState() == GameState.ENDING;
+    }
+
+    /// <summary>
+    /// Checks if the game is over.
+    /// </summary>
+    /// <returns>Whether or not the game is over.</returns>
+    public bool IsGameOver()
+    {
+        return GetGameState() == GameState.GAMEOVER;
     }
 }

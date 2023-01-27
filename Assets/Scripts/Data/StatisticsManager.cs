@@ -32,12 +32,12 @@ public class StatisticsManager : MonoBehaviour, ISaveable
         SaveDataManager.LoadJsonData();
 
         int gameScore = GameDataManager.instance.Score();
-        int bonusScore = Mathf.RoundToInt(GameDataManager.instance.GameLength());
-        gameScore += bonusScore;
+        int bonusScore = Mathf.FloorToInt(GameDataManager.instance.GameLength());
+        int finalScore = gameScore + bonusScore;
 
-        if (gameScore > bestScore) bestScore = gameScore;
+        if (finalScore > bestScore) bestScore = finalScore;
         
-        totalScore += gameScore;
+        totalScore += finalScore;
         
         plays++;
 

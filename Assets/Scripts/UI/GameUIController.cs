@@ -18,6 +18,15 @@ public class GameUIController : MenuUI
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private TextMeshProUGUI pauseButtonText;
 
+    [Header("Game Over UI")]
+    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private TextMeshProUGUI summaryScoreText;
+    [SerializeField] private TextMeshProUGUI summaryBonusScoreText;
+    [SerializeField] private TextMeshProUGUI summaryFinalScoreText;
+    [SerializeField] private TextMeshProUGUI summaryBestScoreText;
+    [SerializeField] private TextMeshProUGUI summaryTimeText;
+    [SerializeField] private TextMeshProUGUI summaryBestTimeText;
+
     /// <summary>
     /// Called just before any of the Update methods is called the first time.
     /// </summary>
@@ -33,6 +42,36 @@ public class GameUIController : MenuUI
     /// </summary>
     private void Update()
     {
+        // Game Over
+        gameOverPanel.SetActive(GameManager.instance.IsGameOver());
+        if (GameManager.instance.IsGameOver())
+        {
+            // Score
+            int gameScore = GameDataManager.instance.Score();
+            int bonusScore = Mathf.FloorToInt(GameDataManager.instance.GameLength());
+            int finalScore = gameScore + bonusScore;
+
+            summaryScoreText.text = $"Game: {gameScore}";
+            summaryBonusScoreText.text = $"Time bonus: {bonusScore}";
+            summaryFinalScoreText.text = $"Total: {finalScore}";
+
+            int bestScore = StatisticsManager.instance.bestScore;
+            if (finalScore >= bestScore)
+                summaryBestScoreText.text = "NEW BEST SCORE!";
+            else
+                summaryBestScoreText.text = $"Best: {bestScore}";
+
+            // Time
+            float gameTime = GameDataManager.instance.GameLength();
+            summaryTimeText.text = TimeUtil.FormattedTime(Mathf.FloorToInt(gameTime), false);
+
+            float bestTime = StatisticsManager.instance.bestTime;
+            if (gameTime >= bestTime)
+                summaryBestTimeText.text = "NEW BEST TIME!";
+            else
+                summaryBestTimeText.text = $"Best: {TimeUtil.FormattedTime(Mathf.FloorToInt(bestTime), false)}";
+        }
+        
         // Pause
         pausePanel.SetActive(GameManager.instance.IsPaused());
         pauseButtonText.text = GameManager.instance.IsPaused() ? "Resume" : "Pause";
@@ -49,7 +88,7 @@ public class GameUIController : MenuUI
         // Stats
         livesText.text = $"{GameDataManager.instance.Lives()} Lives";
         scoreText.text = $"{GameDataManager.instance.Score()} Score";
-        gameLengthText.text = TimeUtil.FormattedTime(timeInSeconds: Mathf.RoundToInt(GameDataManager.instance.GameLength()), includeHours: false);
+        gameLengthText.text = TimeUtil.FormattedTime(timeInSeconds: Mathf.FloorToInt(GameDataManager.instance.GameLength()), includeHours: false);
 
         // Objective
         equationText.text = ObjectiveManager.instance.CurrentObjective().GetEquation();
@@ -60,6 +99,12 @@ public class GameUIController : MenuUI
     /// </summary>
     public void GoToMenu()
     {
+        if (GameManager.instance.IsGameOver())
+        {
+            GameManager.instance.LeaveGame();
+            return;
+        }
+
         GameManager.instance.EndGame(instant: true);
     }
 

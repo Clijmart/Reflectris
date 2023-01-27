@@ -4,4 +4,5 @@
     RUNNING,
     PAUSED,
     ENDING,
+    GAMEOVER
 }

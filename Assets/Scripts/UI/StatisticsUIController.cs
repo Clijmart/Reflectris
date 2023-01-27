@@ -29,7 +29,7 @@ public class StatisticsUIController : MenuUI
         bestScoreText.text = $"Best: {StatisticsManager.instance.bestScore}";
         totalScoreText.text = $"Total: {StatisticsManager.instance.totalScore}";
         playsText.text = $"Plays: {StatisticsManager.instance.plays}";
-        bestTimeText.text = $"Best: {TimeUtil.FormattedTime(timeInSeconds: Mathf.RoundToInt(StatisticsManager.instance.bestTime), includeHours: false)}";
-        totalTimeText.text = $"Total: {TimeUtil.FormattedTime(timeInSeconds: Mathf.RoundToInt(StatisticsManager.instance.totalTime), includeHours: true)}";
+        bestTimeText.text = $"Best: {TimeUtil.FormattedTime(timeInSeconds: Mathf.FloorToInt(StatisticsManager.instance.bestTime), includeHours: false)}";
+        totalTimeText.text = $"Total: {TimeUtil.FormattedTime(timeInSeconds: Mathf.FloorToInt(StatisticsManager.instance.totalTime), includeHours: true)}";
     }
 }
