@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class MainMenuUIController : MenuUI
 {
+    [SerializeField] private GameObject guidePanel;
+
+    private bool guideOpen = false;
+
     /// <summary>
     /// Called just before any of the Update methods is called the first time.
     /// </summary>
@@ -17,6 +21,8 @@ public class MainMenuUIController : MenuUI
     /// </summary>
     private void Update()
     {
+        guidePanel.SetActive(guideOpen);
+
         ReadUserInput();
     }
 
@@ -37,5 +43,30 @@ public class MainMenuUIController : MenuUI
         {
             MenuManager.OpenSettingsMenu();
         }
+    }
+
+    /// <summary>
+    /// Open the guide panel.
+    /// </summary>
+    public void OpenGuide()
+    {
+        guideOpen = true;
+    }
+
+    /// <summary>
+    /// Close the guide panel.
+    /// </summary>
+    public void CloseGuide()
+    {
+        guideOpen = false;
+    }
+
+    /// <summary>
+    /// Check if the guide panel is open.
+    /// </summary>
+    /// <returns></returns>
+    public bool IsGuideOpen()
+    {
+        return guideOpen;
     }
 }
