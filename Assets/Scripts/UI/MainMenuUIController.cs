@@ -69,4 +69,12 @@ public class MainMenuUIController : MenuUI
     {
         return guideOpen;
     }
+
+    /// <summary>
+    /// Quit and close the game.
+    /// </summary>
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
