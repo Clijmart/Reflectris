@@ -7,7 +7,6 @@ public class GameUIController : MenuUI
     [SerializeField] private TextMeshProUGUI countdownText;
 
     [Header("Stats UI")]
-    [SerializeField] private TextMeshProUGUI livesText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI gameLengthText;
 
@@ -86,7 +85,6 @@ public class GameUIController : MenuUI
         }
 
         // Stats
-        livesText.text = $"{GameDataManager.instance.Lives()} Lives";
         scoreText.text = $"{GameDataManager.instance.Score()} Score";
         gameLengthText.text = TimeUtil.FormattedTime(timeInSeconds: Mathf.FloorToInt(GameDataManager.instance.GameLength()), includeHours: false);
 

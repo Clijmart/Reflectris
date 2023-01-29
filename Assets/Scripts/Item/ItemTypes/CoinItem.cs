@@ -46,6 +46,6 @@ public class CoinItem : MonoBehaviour, IItemType
     /// </summary>
     public void PickUp()
     {
-        GameDataManager.instance.ChangeScore(amount: 5);
+        GameDataManager.instance.ChangeScore(amount: 10);
     }
 }

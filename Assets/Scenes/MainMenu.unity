@@ -261,7 +261,7 @@ MonoBehaviour:
 
 
     solve the equations
-    and tactically place the missing arithmetic operators on the grid cause reflections.'
+    and tactically place the missing arithmetic operators on the grid to cause reflections.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 274f1ee254182774d83f4da0bcabb5ba, type: 2}
   m_sharedMaterial: {fileID: 3209592159640024021, guid: 274f1ee254182774d83f4da0bcabb5ba,
@@ -2537,7 +2537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1396294062
 RectTransform:
   m_ObjectHideFlags: 0

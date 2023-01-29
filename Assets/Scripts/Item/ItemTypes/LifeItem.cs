@@ -46,7 +46,7 @@ public class LifeItem : MonoBehaviour, IItemType
     /// </summary>
     public void PickUp()
     {
-        GameDataManager.instance.ChangeLives(amount: 5);
+        GameDataManager.instance.ChangeLives(amount: 1);
         GameDataManager.instance.ChangeScore(amount: 3);
     }
 }

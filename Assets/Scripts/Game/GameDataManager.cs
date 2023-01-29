@@ -5,7 +5,7 @@ public class GameDataManager : MonoBehaviour
     public static GameDataManager instance;
 
     [Header("Game Data Defaults")]
-    [SerializeField] private int startLives = 3;
+    [SerializeField] private int startLives = 2;
     [SerializeField] private int maxLives = 3;
     [SerializeField] private BlockType selectedBlockType = BlockType.MULTIPLICATION;
 
@@ -28,6 +28,7 @@ public class GameDataManager : MonoBehaviour
     private void Start()
     {
         lives = startLives;
+        LivesManager.instance.DrawLives();
     }
 
     /// <summary>
@@ -109,6 +110,15 @@ public class GameDataManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Get the max amount of lives.
+    /// </summary>
+    /// <returns>The max amount of lives.</returns>
+    public int MaxLives()
+    {
+        return maxLives;
+    }
+
+    /// <summary>
     /// Get the current amount of lives.
     /// </summary>
     /// <returns>The current amount of lives.</returns>
@@ -125,6 +135,8 @@ public class GameDataManager : MonoBehaviour
     public int ChangeLives(int amount)
     {
         lives = Mathf.Min(lives + amount, maxLives);
+
+        LivesManager.instance.DrawLives();
         return lives;
     }
 
