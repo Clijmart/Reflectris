@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2350812991072074241}
   - component: {fileID: 9120341010256765775}
   m_Layer: 0
-  m_Name: Health VFX
+  m_Name: Life VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

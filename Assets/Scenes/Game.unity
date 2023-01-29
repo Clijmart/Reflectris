@@ -2940,7 +2940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec764de86e1b70478f34f53491e68ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLives: 3
+  startLives: 2
   maxLives: 3
   selectedBlockType: 2
 --- !u!4 &836377973
@@ -5179,7 +5179,7 @@ GameObject:
   - component: {fileID: 1427374532}
   - component: {fileID: 1427374531}
   m_Layer: 5
-  m_Name: Health
+  m_Name: LivesIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6090,7 +6090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1569367601
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6287,7 +6287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1638349931
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6932,7 +6932,7 @@ GameObject:
   - component: {fileID: 1916655210}
   - component: {fileID: 1916655211}
   m_Layer: 0
-  m_Name: HealthItemType
+  m_Name: LifeItemType
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

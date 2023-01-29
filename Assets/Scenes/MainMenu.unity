@@ -260,8 +260,8 @@ MonoBehaviour:
   m_text: 'prevent the            from hitting the            !
 
 
-    solve the equation
-    and tactically place the missing arithmetic operator on the grid.'
+    solve the equations
+    and tactically place the missing arithmetic operators on the grid cause reflections.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 274f1ee254182774d83f4da0bcabb5ba, type: 2}
   m_sharedMaterial: {fileID: 3209592159640024021, guid: 274f1ee254182774d83f4da0bcabb5ba,

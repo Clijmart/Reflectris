@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HealthItem : MonoBehaviour, IItemType
+public class LifeItem : MonoBehaviour, IItemType
 {
     [Header("Item Prefabs")]
     [SerializeField] private GameObject itemPrefab;
@@ -38,7 +38,7 @@ public class HealthItem : MonoBehaviour, IItemType
     /// <returns>The matching ItemType</returns>
     public ItemType GetItemType()
     {
-        return ItemType.HEALTH;
+        return ItemType.LIFE;
     }
 
     /// <summary>
